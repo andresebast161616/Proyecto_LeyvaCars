@@ -1,0 +1,207 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\usuarios\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\usuarios\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\usuarios\\verificaremail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\usuarios\\verificaremail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\models\\modelosistema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\models\\modelosistema.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\models\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\models\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|c:\\users\\andre\\onedrive\\documentos\\proyecto\\proyecto_leyva_cars\\proyecto_leyva_cars\\models\\codigoverificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\models\\codigoverificacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "web.config",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\web.config",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\web.config",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\web.config",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-10-09T00:38:28.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-09T00:29:29.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-09T00:27:51.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\Create.cshtml",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Usuarios\\Create.cshtml",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\Create.cshtml",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Usuarios\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEBAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-08T22:16:23.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAMEAAAAAAAAAAAAAANAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-08T22:38:11.328Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Usuarios.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Models\\Usuarios.cs",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Models\\Usuarios.cs",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Models\\Usuarios.cs",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Models\\Usuarios.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAuwB8AAABYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T22:53:27.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CodigoVerificacion.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Models\\CodigoVerificacion.cs",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Models\\CodigoVerificacion.cs",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Models\\CodigoVerificacion.cs",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Models\\CodigoVerificacion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T23:08:12.813Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VerificarEmail.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\VerificarEmail.cshtml",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Usuarios\\VerificarEmail.cshtml",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\VerificarEmail.cshtml",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Usuarios\\VerificarEmail.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAB5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-08T23:10:30.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\Index.cshtml",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Usuarios\\Index.cshtml",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\Index.cshtml",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Usuarios\\Index.cshtml",
+              "ViewState": "AgIAABcAAAAAAAAAAAAwwDEAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-08T22:27:19.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAYwEgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T22:13:38.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ModeloSistema.cs",
+              "DocumentMoniker": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Models\\ModeloSistema.cs",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Models\\ModeloSistema.cs",
+              "ToolTip": "C:\\Users\\andre\\OneDrive\\Documentos\\Proyecto\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Models\\ModeloSistema.cs",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Models\\ModeloSistema.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-08T22:11:53.041Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

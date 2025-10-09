@@ -1,0 +1,394 @@
+﻿@model Proyecto_Leyva_Cars.Models.Usuarios
+@{
+    ViewBag.Title = "Crear Usuario";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuario</title>
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode {
+            background: #ffffff;
+        }
+
+        body.dark-mode {
+            background: #0a0a0a;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 28px;
+            padding: 48px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .light-mode .form-container {
+            background: #ffffff;
+        }
+
+        .dark-mode .form-container {
+            background: #1e1e1e;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .light-mode .theme-toggle {
+            background: #ffffff;
+            color: #667eea;
+        }
+
+        .dark-mode .theme-toggle {
+            background: #2d2d2d;
+            color: #ffd700;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .form-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .light-mode .form-title {
+            color: #1a1a1a;
+        }
+
+        .dark-mode .form-title {
+            color: #ffffff;
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .light-mode .form-subtitle {
+            color: #6b7280;
+        }
+
+        .dark-mode .form-subtitle {
+            color: #9ca3af;
+        }
+
+        .form-subtitle a {
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .light-mode .form-subtitle a {
+            color: #667eea;
+        }
+
+        .dark-mode .form-subtitle a {
+            color: #818cf8;
+        }
+
+        .form-subtitle a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 52px;
+            padding: 0 18px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .light-mode .form-control {
+            background: #f3f4f6;
+            color: #1a1a1a;
+            border-color: #f3f4f6;
+        }
+
+        .dark-mode .form-control {
+            background: #2d2d2d;
+            color: #ffffff;
+            border-color: #2d2d2d;
+        }
+
+        .form-control::placeholder {
+            transition: color 0.3s ease;
+        }
+
+        .light-mode .form-control::placeholder {
+            color: #9ca3af;
+        }
+
+        .dark-mode .form-control::placeholder {
+            color: #6b7280;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .light-mode .form-control:focus {
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .dark-mode .form-control:focus {
+            background: #1e1e1e;
+            box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.2);
+        }
+
+        .text-danger {
+            font-size: 13px;
+            margin-top: 6px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .light-mode .text-danger {
+            color: #ef4444;
+        }
+
+        .dark-mode .text-danger {
+            color: #f87171;
+        }
+
+        .btn-submit {
+            width: 100%;
+            height: 52px;
+            background: #667eea;
+            border: none;
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-submit:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-back {
+            width: 100%;
+            height: 52px;
+            background: transparent;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .light-mode .btn-back {
+            color: #6b7280;
+            border: 2px solid #e5e7eb;
+        }
+
+        .dark-mode .btn-back {
+            color: #9ca3af;
+            border: 2px solid #374151;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-1px);
+        }
+
+        .light-mode .btn-back:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+        }
+
+        .dark-mode .btn-back:hover {
+            background: #2d2d2d;
+            border-color: #4b5563;
+        }
+
+        @@media (max-width: 480px) {
+            .form-container {
+                padding: 36px 28px;
+            }
+
+            .form-title {
+                font-size: 28px;
+            }
+
+            .theme-toggle {
+                top: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <!-- Botón cambiar tema -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="bi bi-sun-fill" id="theme-icon"></i>
+    </button>
+
+    <div class="form-container">
+        <!-- Encabezado -->
+        <div class="form-header">
+            <h1 class="form-title">Crear Cuenta</h1>
+            <p class="form-subtitle">
+                ¿Ya tienes una cuenta? <a href="@Url.Action("Index", "Usuarios")">Iniciar sesión</a>
+            </p>
+        </div>
+
+        <!-- Formulario -->
+        @using (Html.BeginForm("Create", "Usuarios", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <!-- Campo: Nombre de usuario -->
+            <div class="form-group">
+                @Html.TextBox("NombreUsuario", ViewBag.NombreUsuario as string, new
+                {
+                    @class = "form-control",
+                    placeholder = "Nombre de usuario"
+                })
+                @Html.ValidationMessage("NombreUsuario", "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Campo: Correo -->
+            <div class="form-group">
+                @Html.TextBox("Correo", ViewBag.Correo as string, new
+                {
+                    @class = "form-control",
+                    placeholder = "Correo electrónico",
+                    type = "email"
+                })
+                @Html.ValidationMessage("Correo", "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Campo: Contraseña -->
+            <div class="form-group">
+                @Html.Password("Contrasena", "", new
+                {
+                    @class = "form-control",
+                    placeholder = "Contraseña"
+                })
+                @Html.ValidationMessage("Contrasena", "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Botón Crear -->
+            <button type="submit" class="btn-submit">
+                Registrarse
+            </button>
+
+            <!-- Botón Volver -->
+            <a href="@Url.Action("Index", "Usuarios")" class="btn-back">
+                <i class="bi bi-arrow-left"></i>
+                Volver
+            </a>
+        }
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+
+            if (body.classList.contains('light-mode')) {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                icon.className = 'bi bi-moon-fill';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                icon.className = 'bi bi-sun-fill';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Cargar tema guardado
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+
+            if (savedTheme === 'dark') {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                icon.className = 'bi bi-moon-fill';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Proyecto_Leyva_Cars.Models.Usuarios>
+
+@{
+    ViewBag.Title = "Lista de Usuarios";
+}
+
+<div class="container mt-5">
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success text-center shadow-sm">
+            @TempData["Mensaje"]
+        </div>
+    }
+
+    <div class="card shadow border-0">
+        <div class="card-header bg-primary text-white text-center rounded-top">
+            <h4><i class="bi bi-people-fill"></i> Lista de Usuarios</h4>
+        </div>
+
+        <div class="card-body bg-light">
+            <div class="text-end mb-3">
+                <a href="@Url.Action("Create", "Usuarios")" class="btn btn-success">
+                    <i class="bi bi-person-plus-fill"></i> Nuevo Usuario
+                </a>
+            </div>
+
+            @if (Model != null && Model.Any())
+            {
+                <table class="table table-bordered table-hover text-center align-middle shadow-sm">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre de Usuario</th>
+                            <th>Correo</th>
+                            <th>Fecha de Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var usuario in Model)
+                        {
+                            <tr>
+                                <td>@usuario.IdUsuario</td>
+                                <td>@usuario.NombreUsuario</td>
+                                <td>@usuario.Correo</td>
+                                <td>
+                                    @(usuario.FechaRegistro.HasValue
+                                        ? usuario.FechaRegistro.Value.ToString("dd/MM/yyyy HH:mm")
+                                        : "—")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning text-center">
+                    <i class="bi bi-exclamation-circle"></i> No hay usuarios registrados aún.
+                </div>
+            }
+        </div>
+    </div>
+</div>
