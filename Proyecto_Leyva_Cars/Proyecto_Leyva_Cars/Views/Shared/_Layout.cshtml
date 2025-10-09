@@ -173,9 +173,13 @@
             }
         }
 
-        .main-container {
+        /*.main-container {
             padding: 2rem 0;
+        }*/
+        .main-container {
+            padding: 0 !important;
         }
+
     </style>
 </head>
 
@@ -226,7 +230,7 @@
     </nav>
 
     <!-- CONTENIDO PRINCIPAL -->
-    <div class="container main-container">
+    <div class="container-fluid main-container">
         @RenderBody()
 
         <script src="~/Assets/js/bootstrap.bundle.min.js"></script>
