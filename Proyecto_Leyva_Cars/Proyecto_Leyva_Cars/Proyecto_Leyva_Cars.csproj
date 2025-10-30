@@ -1,4 +1,5 @@
-﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<!-- Archivo reparado: solo un elemento raíz <Project> y todos los <Content> dentro de <ItemGroup> -->
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -99,10 +100,18 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\home.css" />
+    <Content Include="Assets\imagenes\chevroletlogo.png" />
+    <Content Include="Assets\imagenes\fordlogo.png" />
+    <Content Include="Assets\imagenes\hondalogo.png" />
+    <Content Include="Assets\imagenes\kialogo.png" />
+    <Content Include="Assets\imagenes\logotoyota.png" />
+    <Content Include="Assets\imagenes\nissanlogo.png" />
     <Content Include="Assets\js\bootstrap.bundle.js" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
     <Content Include="Assets\js\bootstrap.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\home.js" />
     <Content Include="Assets\js\jquery-3.7.1.min.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
