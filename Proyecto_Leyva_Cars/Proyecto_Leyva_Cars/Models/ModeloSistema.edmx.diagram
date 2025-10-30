@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64a07d63978f4624a91ffa1f6a67afdb" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="LeyvaCarModel.CodigoVerificacion" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Consultas" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Pedidos" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Productos" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Usuarios" Width="1.5" PointX="5.75" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="LeyvaCarModel.FK__CodigoVer__Id_Us__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Consultas__Produ__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Pedidos__Consult__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Pedidos__Product__3C69FB99" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

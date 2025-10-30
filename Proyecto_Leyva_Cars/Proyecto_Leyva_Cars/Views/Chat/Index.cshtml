@@ -1,0 +1,138 @@
+﻿@{
+    ViewBag.Title = "Chat IA - Identificador de Piezas";
+}
+
+@section Styles {
+    <link href="~/Assets/css/chat-styles.css" rel="stylesheet" />
+}
+
+<div class="container-fluid py-4">
+    <!-- Header Principal -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="display-5 fw-bold text-primary mb-2">
+                🤖 Identificador de Piezas con IA
+            </h1>
+            <p class="lead text-muted">
+                Sube una foto de tu pieza automotriz y nuestro sistema te ayudará a encontrarla
+            </p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- COLUMNA IZQUIERDA: Datos del Vehículo (3/12) -->
+        <div class="col-lg-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        🚗 Datos del Vehículo
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form id="vehiculoForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Marca</label>
+                            <input type="text" id="marcaVehiculo" class="form-control" placeholder="Toyota, Ford, etc.">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Modelo</label>
+                            <input type="text" id="modeloVehiculo" class="form-control" placeholder="Corolla, Focus, etc.">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Año</label>
+                            <input type="number" id="anioVehiculo" class="form-control" placeholder="2020" min="1990" max="2030">
+                        </div>
+
+                        <!-- Zona de Subida de Imagen -->
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Imagen de la Pieza</label>
+                            <div id="dropZone" class="border border-2 border-dashed rounded p-3 text-center cursor-pointer hover-effect">
+                                <div id="dropContent">
+                                    <div class="display-6 text-muted mb-2">☁️</div>
+                                    <p class="mb-1 small">Arrastra tu imagen o haz clic</p>
+                                    <p class="text-muted small">JPG, PNG (máx. 4MB)</p>
+                                </div>
+                                <input type="file" id="imageInput" accept="image/*" class="d-none">
+                            </div>
+
+                            <!-- Vista Previa Compacta -->
+                            <div id="imagePreview" class="d-none mt-3">
+                                <div class="text-center">
+                                    <img id="previewImg" class="img-thumbnail" style="max-height: 120px; max-width: 100%;">
+                                    <div class="mt-2">
+                                        <button type="button" id="removeImage" class="btn btn-outline-danger btn-sm">
+                                            🗑️ Quitar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botón Principal -->
+                        <button type="button" id="analizarBtn" class="btn btn-success w-100 py-2 fw-bold">
+                            🔍 Analizar con IA
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA CENTRAL: Chat y Conversación (6/12) -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        💬 Chat con IA
+                    </h5>
+                    <span id="statusIndicator" class="badge bg-secondary">Listo</span>
+                </div>
+                
+                <!-- Área de Mensajes -->
+                <div class="card-body p-0 chat-container">
+                    <div id="chatMessages" class="p-3 overflow-auto h-100">
+                        <div class="text-center text-muted py-5">
+                            <div class="display-1 text-secondary mb-3">🤖</div>
+                            <p class="mb-0">Completa los datos y sube una imagen para comenzar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loading en el Chat -->
+                <div id="chatLoading" class="d-none">
+                    <div class="card-footer bg-light">
+                        <div class="d-flex align-items-center">
+                            <div class="spinner-border spinner-border-sm text-primary me-3" role="status"></div>
+                            <div>
+                                <div class="fw-bold">Analizando imagen con IA...</div>
+                                <small class="text-muted">Esto puede tomar unos segundos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: Resultados (3/12) -->
+        <div class="col-lg-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-success text-white">
+                    <h5 class="card-title mb-0">
+                        🔍 Resultados
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    <div id="productosContainer" class="productos-container">
+                        <div class="text-center text-muted py-5 px-3">
+                            <div class="display-1 text-secondary mb-3">🔍</div>
+                            <p class="mb-0 small">Los resultados aparecerán aquí después del análisis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Assets/js/chat-app.js"></script>
+}

@@ -7,7 +7,8 @@ namespace Proyecto_Leyva_Cars.Controllers
 {
     public class UsuariosController : Controller
     {
-        private ModeloSistema db = new ModeloSistema();
+        // CAMBIO: Usar el contexto generado desde el .edmx
+        private LeyvaCarEntities db = new LeyvaCarEntities();
 
         // GET: Usuarios
         public ActionResult Index()
@@ -29,16 +30,16 @@ namespace Proyecto_Leyva_Cars.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Verificar si el correo ya existe
-                if (db.Usuarios.Any(u => u.Correo == usuario.Correo))
+                // CAMBIO: Usar Email en lugar de Correo (según tu modelo de BD)
+                if (db.Usuarios.Any(u => u.Email == usuario.Email))
                 {
-                    ModelState.AddModelError("Correo", "Este correo ya está registrado");
+                    ModelState.AddModelError("Email", "Este correo ya está registrado");
                     return View(usuario);
                 }
 
                 // Crear usuario (sin verificar aún)
                 usuario.FechaRegistro = DateTime.Now;
-                usuario.EmailVerificado = false;
+                usuario.Activo = false; // CAMBIO: Usar Activo en lugar de EmailVerificado
                 db.Usuarios.Add(usuario);
                 db.SaveChanges();
 
@@ -46,19 +47,20 @@ namespace Proyecto_Leyva_Cars.Controllers
                 string codigo = GenerarCodigoAleatorio();
                 var codigoVerificacion = new CodigoVerificacion
                 {
-                    IdUsuario = usuario.IdUsuario,
+                    Id_Usuario = usuario.Id_Usuario, // CAMBIO: Usar Id_Usuario
                     Codigo = codigo,
+                    TipoVerificacion = "registro", // CAMBIO: Agregar tipo
                     FechaCreacion = DateTime.Now,
-                    FechaExpiracion = DateTime.Now.AddMinutes(15), // Válido por 15 minutos
-                    Verificado = false
+                    FechaExpiracion = DateTime.Now.AddMinutes(15),
+                    Usado = false // CAMBIO: Usar Usado en lugar de Verificado
                 };
-                db.CodigosVerificacion.Add(codigoVerificacion);
+                db.CodigoVerificacion.Add(codigoVerificacion);
                 db.SaveChanges();
 
                 // Guardar datos en TempData para la vista de verificación
-                TempData["IdUsuario"] = usuario.IdUsuario;
-                TempData["Correo"] = usuario.Correo;
-                TempData["Codigo"] = codigo; // Para enviarlo por EmailJS
+                TempData["IdUsuario"] = usuario.Id_Usuario;
+                TempData["Correo"] = usuario.Email;
+                TempData["Codigo"] = codigo;
 
                 return RedirectToAction("VerificarEmail");
             }
@@ -77,8 +79,8 @@ namespace Proyecto_Leyva_Cars.Controllers
 
             ViewBag.Correo = correo;
             ViewBag.Codigo = TempData["Codigo"];
-            ViewBag.NombreUsuario = correo.Split('@')[0]; // 👈 AGREGADO: Extraer nombre del correo
-            TempData.Keep("IdUsuario"); // Mantener para el POST
+            ViewBag.NombreUsuario = correo.Split('@')[0];
+            TempData.Keep("IdUsuario");
 
             return View();
         }
@@ -90,18 +92,18 @@ namespace Proyecto_Leyva_Cars.Controllers
         {
             int idUsuario = (int)TempData["IdUsuario"];
 
-            var codigoVerificacion = db.CodigosVerificacion
-                .Where(c => c.IdUsuario == idUsuario && c.Codigo == codigo && !c.Verificado)
+            // CAMBIO: Usar nombres de campos correctos
+            var codigoVerificacion = db.CodigoVerificacion
+                .Where(c => c.Id_Usuario == idUsuario && c.Codigo == codigo && c.Usado == false)
                 .OrderByDescending(c => c.FechaCreacion)
                 .FirstOrDefault();
 
             if (codigoVerificacion == null)
             {
                 ViewBag.Error = "Código inválido";
-                // 👇 AGREGADO: Mantener datos en ViewBag para mostrar en la vista
                 var usuario = db.Usuarios.Find(idUsuario);
-                ViewBag.Correo = usuario.Correo;
-                ViewBag.NombreUsuario = usuario.Correo.Split('@')[0];
+                ViewBag.Correo = usuario.Email;
+                ViewBag.NombreUsuario = usuario.Email.Split('@')[0];
                 TempData.Keep("IdUsuario");
                 return View();
             }
@@ -109,18 +111,17 @@ namespace Proyecto_Leyva_Cars.Controllers
             if (DateTime.Now > codigoVerificacion.FechaExpiracion)
             {
                 ViewBag.Error = "El código ha expirado";
-                // 👇 AGREGADO: Mantener datos en ViewBag para mostrar en la vista
                 var usuario = db.Usuarios.Find(idUsuario);
-                ViewBag.Correo = usuario.Correo;
-                ViewBag.NombreUsuario = usuario.Correo.Split('@')[0];
+                ViewBag.Correo = usuario.Email;
+                ViewBag.NombreUsuario = usuario.Email.Split('@')[0];
                 TempData.Keep("IdUsuario");
                 return View();
             }
 
             // Marcar como verificado
-            codigoVerificacion.Verificado = true;
+            codigoVerificacion.Usado = true;
             var usuarioVerificado = db.Usuarios.Find(idUsuario);
-            usuarioVerificado.EmailVerificado = true;
+            usuarioVerificado.Activo = true; // CAMBIO: Usar Activo
             db.SaveChanges();
 
             TempData["Mensaje"] = "¡Email verificado correctamente! ✅";
@@ -131,7 +132,7 @@ namespace Proyecto_Leyva_Cars.Controllers
         private string GenerarCodigoAleatorio()
         {
             Random random = new Random();
-            return random.Next(100000, 999999).ToString(); // Código de 6 dígitos
+            return random.Next(100000, 999999).ToString();
         }
 
         protected override void Dispose(bool disposing)

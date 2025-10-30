@@ -1,0 +1,68 @@
+﻿.hover-effect:hover {
+    border-color: #0d6efd !important;
+    background-color: #f8f9ff;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+}
+
+    .chat-message.user {
+        text-align: right;
+    }
+
+    .chat-message.ai {
+        text-align: left;
+    }
+
+.mensaje-usuario {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 18px 18px 5px 18px;
+    display: inline-block;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.mensaje-ia {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    border-radius: 18px 18px 18px 5px;
+    display: inline-block;
+    max-width: 85%;
+    word-wrap: break-word;
+}
+
+.imagen-chat {
+    max-width: 200px;
+    max-height: 150px;
+    border-radius: 8px;
+    margin: 5px 0;
+}
+
+.producto-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.chat-container {
+    height: 500px;
+}
+
+.productos-container {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+@media (max-width: 991px) {
+    .col-lg-3, .col-lg-6 {
+        margin-bottom: 1rem;
+    }
+}

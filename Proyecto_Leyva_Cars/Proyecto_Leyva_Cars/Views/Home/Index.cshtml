@@ -14,113 +14,215 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="/Assets/js/home.js"></script>
-    <link rel="stylesheet" href="/Assets/css/home.css" />
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const slides = document.querySelectorAll(".carousel-slide");
+            const indicators = document.querySelectorAll(".carousel-indicator");
+            const nextBtn = document.getElementById("nextSlide");
+            const prevBtn = document.getElementById("prevSlide");
+            let currentSlide = 0;
+            const intervalTime = 3000; // 3 segundos
+            let autoSlide;
 
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle("opacity-0", i !== index);
+                    slide.classList.toggle("active", i === index);
+                });
+
+                indicators.forEach((dot, i) => {
+                    dot.classList.toggle("bg-white", i === index);
+                    dot.classList.toggle("bg-white/50", i !== index);
+                });
+
+                currentSlide = index;
+            }
+
+            function nextSlide() {
+                const next = (currentSlide + 1) % slides.length;
+                showSlide(next);
+            }
+
+            function prevSlideFunc() {
+                const prev = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(prev);
+            }
+
+            function resetAutoSlide() {
+                clearInterval(autoSlide);
+                autoSlide = setInterval(nextSlide, intervalTime);
+            }
+
+            // Eventos de botones
+            if (nextBtn && prevBtn) {
+                nextBtn.addEventListener("click", () => {
+                    nextSlide();
+                    resetAutoSlide();
+                });
+
+                prevBtn.addEventListener("click", () => {
+                    prevSlideFunc();
+                    resetAutoSlide();
+                });
+            }
+
+            // Eventos en indicadores (dots)
+            indicators.forEach((dot, i) => {
+                dot.addEventListener("click", () => {
+                    showSlide(i);
+                    resetAutoSlide();
+                });
+            });
+
+            // Inicia el carrusel automático
+            showSlide(currentSlide);
+            autoSlide = setInterval(nextSlide, intervalTime);
+        });
+    </script>
+
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        section {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(17, 147, 212, 0.25);
+        }
+
+        /* FORZAR ANCHO COMPLETO */
+        body, html {
+            max-width: 100% !important;
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-    <!-- HERO/BUSCADOR AUTOPARTES -->
-    <section class="hero-search-section">
-        <div class="hero-search-container">
-            <!-- Títulos -->
-            <h1 class="hero-title">
-                REPUESTOS AL POR MAYOR Y MENOR
-            </h1>
-            <h2 class="hero-subtitle">
-                PARA TODO TIPO DE VEHÍCULO
-            </h2>
 
-            <!-- Formulario de Búsqueda -->
-            <form class="search-form">
-                <!-- Campo Marca -->
-                <div class="search-field">
-                    <label class="search-label">Marca</label>
-                    <select class="search-select">
-                        <option value="">Seleccione Marca</option>
-                        <option value="citroen">Citroën</option>
-                        <option value="peugeot">Peugeot</option>
-                        <option value="renault">Renault</option>
-                        <option value="ford">Ford</option>
-                        <option value="chevrolet">Chevrolet</option>
-                        <option value="toyota">Toyota</option>
-                        <option value="nissan">Nissan</option>
-                        <option value="hyundai">Hyundai</option>
-                    </select>
-                </div>
+    <!-- HERO CAROUSEL (Full Width) -->
+    <section class="relative flex items-center justify-center min-h-[700px] w-full overflow-hidden">
+        <!-- Carrusel de imágenes de fondo -->
+        <div id="heroCarousel" class="absolute inset-0 w-full h-full">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000"
+                 style="background-image: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://i.ibb.co/prWH9NFS/istockphoto-478107962-612x612.jpg');">
+            </div>
 
-                <!-- Campo Modelo -->
-                <div class="search-field">
-                    <label class="search-label">Modelo</label>
-                    <select class="search-select">
-                        <option value="">Seleccione Modelo</option>
-                        <option value="c3">C3</option>
-                        <option value="208">208</option>
-                        <option value="clio">Clio</option>
-                        <option value="fiesta">Fiesta</option>
-                        <option value="spark">Spark</option>
-                    </select>
-                </div>
+            <!-- Slide 2 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                 style="background-image: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('https://i.ibb.co/JDBrcBn/2019-01-10-10-00-24.jpg');">
+            </div>
 
-                <!-- Campo Año -->
-                <div class="search-field">
-                    <label class="search-label">Año</label>
-                    <select class="search-select">
-                        <option value="">Selecciona el año</option>
-                        <option value="2024">2024</option>
-                        <option value="2023">2023</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        <option value="2020">2020</option>
-                        <option value="2019">2019</option>
-                        <option value="2018">2018</option>
-                    </select>
-                </div>
+            <!-- Slide 3 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                 style="background-image: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('URL_IMAGEN_3_IMGBB');">
+            </div>
 
-                <!-- Botón de Búsqueda -->
-                <button type="submit" class="search-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    Buscar
-                </button>
-            </form>
+            <!-- Slide 4 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                 style="background-image: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('URL_IMAGEN_4_IMGBB');">
+            </div>
 
-            <!-- Texto informativo -->
-            <p class="hero-info-text">
-                Encuentra el repuesto perfecto para tu vehículo en segundos
-            </p>
+            <!-- Slide 5 -->
+            <div class="carousel-slide absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 opacity-0"
+                 style="background-image: linear-gradient(135deg, rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('URL_IMAGEN_5_IMGBB');">
+            </div>
         </div>
-    </section>
 
-    <!-- CARRUSEL DE MARCAS -->
-    <section class="brands-carousel-section">
-        <div class="carousel-track-wrapper">
-            <div class="carousel-track" id="carouselTrack">
-                <!-- Los logos se duplicarán automáticamente con JavaScript -->
-                <div class="carousel-slide">
-                    <img src="~/Assets/imagenes/logotoyota.png" alt="toyota" class="brand-logo">
+        <!-- Elementos decorativos animados -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-white/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+
+        <div class="relative z-10 text-center text-white px-6 md:px-12 max-w-5xl">
+            <!-- Badge superior -->
+            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full mb-6 border border-white/30">
+                <span class="material-symbols-outlined text-yellow-300 animate-pulse">bolt</span>
+                <span class="text-sm font-semibold">Tecnología de Vanguardia con IA</span>
+            </div>
+
+            <!-- Título principal con efecto -->
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                Revolucionando la
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-400">
+                    Gestión de Repuestos
+                </span>
+                <br />Automotrices
+            </h1>
+
+            <!-- Descripción mejorada -->
+            <p class="max-w-3xl mx-auto text-white/90 mb-10 text-lg md:text-xl leading-relaxed">
+                SoftParts utiliza <span class="font-bold text-yellow-300">Inteligencia Artificial</span> para optimizar la identificación de piezas,
+                la gestión de inventario y el mantenimiento predictivo de tu negocio.
+            </p>
+
+            <!-- Botones mejorados -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <a href="#" class="group bg-white text-primary px-10 py-4 rounded-xl font-bold shadow-2xl hover:shadow-primary/50 hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                    <span>Explorar Soluciones</span>
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+                <a href="#" class="border-2 border-white/50 backdrop-blur-md text-white px-10 py-4 rounded-xl font-bold hover:bg-white/20 hover:border-white transition-all duration-300">
+                    Ver Demo
+                </a>
+            </div>
+
+            <!-- Estadísticas o features destacadas -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition">
+                    <div class="text-4xl font-black text-yellow-300 mb-2">99%</div>
+                    <div class="text-sm font-semibold">Precisión en Identificación</div>
                 </div>
-                <div class="carousel-slide">
-                    <img src="~/Assets/imagenes/nissanlogo.png" alt="nissan" class="brand-logo">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition">
+                    <div class="text-4xl font-black text-yellow-300 mb-2">50%</div>
+                    <div class="text-sm font-semibold">Reducción de Costos</div>
                 </div>
-                <div class="carousel-slide">
-                    <img src="~/Assets/imagenes/kialogo.png" alt="kia" class="brand-logo">
-                </div>
-                <div class="carousel-slide">
-                    <img src="~/Assets/imagenes/hondalogo.png" alt="honda" class="brand-logo">
-                </div>
-                <div class="carousel-slide">
-                    <img src="~/Assets/imagenes/chevroletlogo.png" alt="che" class="brand-logo">
-                </div>
-                <div class="carousel-slide">
-                    <img src="~/Assets/imagenes/fordlogo.png" alt="ford" class="brand-logo">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition">
+                    <div class="text-4xl font-black text-yellow-300 mb-2">24/7</div>
+                    <div class="text-sm font-semibold">Soporte Técnico</div>
                 </div>
             </div>
         </div>
+
+        <!-- Controles del carrusel -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex items-center gap-4">
+            <!-- Indicadores de slide -->
+            <div class="flex gap-2">
+                <button class="carousel-indicator active w-3 h-3 rounded-full bg-white transition-all duration-300" data-slide="0"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50 transition-all duration-300" data-slide="1"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50 transition-all duration-300" data-slide="2"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50 transition-all duration-300" data-slide="3"></button>
+                <button class="carousel-indicator w-3 h-3 rounded-full bg-white/50 transition-all duration-300" data-slide="4"></button>
+            </div>
+        </div>
+
+        <!-- Botones de navegación manual -->
+        <button id="prevSlide" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-md p-3 rounded-full hover:bg-white/30 transition">
+            <span class="material-symbols-outlined text-white text-2xl">chevron_left</span>
+        </button>
+        <button id="nextSlide" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 backdrop-blur-md p-3 rounded-full hover:bg-white/30 transition">
+            <span class="material-symbols-outlined text-white text-2xl">chevron_right</span>
+        </button>
     </section>
-
-
-
 
     <!-- NUEVOS INGRESOS -->
     <section class="bg-white py-24 w-full">
@@ -326,6 +428,67 @@
         </div>
     </section>
 
+    <!-- MARCAS PRINCIPALES -->
+    <section class="bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 py-20 text-center text-white w-full">
+        <h2 class="text-4xl font-bold mb-4">MARCAS PRINCIPALES</h2>
+        <p class="text-white/90 mb-12 text-lg">Descubre repuestos de las marcas automotrices más populares.</p>
+
+        <!-- Primera fila - 5 marcas -->
+        <div class="flex flex-wrap justify-center items-center gap-6 px-6 md:px-16 mb-6">
+            <!-- Marca 1 - Toyota -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_TOYOTA" alt="Toyota" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 2 - Honda -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_HONDA" alt="Honda" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 3 - Ford -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_FORD" alt="Ford" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 4 - Chevrolet -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_CHEVROLET" alt="Chevrolet" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 5 - Nissan -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_NISSAN" alt="Nissan" class="w-full h-full object-cover" />
+            </div>
+        </div>
+
+        <!-- Segunda fila - 5 marcas -->
+        <div class="flex flex-wrap justify-center items-center gap-6 px-6 md:px-16">
+            <!-- Marca 6 - Hyundai -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_HYUNDAI" alt="Hyundai" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 7 - Kia -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_KIA" alt="Kia" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 8 - Mazda -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_MAZDA" alt="Mazda" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 9 - Volkswagen -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_VOLKSWAGEN" alt="Volkswagen" class="w-full h-full object-cover" />
+            </div>
+
+            <!-- Marca 10 - BMW -->
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden hover:scale-105 transition-transform duration-300 shadow-xl w-56 h-64">
+                <img src="URL_DE_TU_IMAGEN_BMW" alt="BMW" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer class="bg-gray-900 text-gray-400 py-12 w-full">

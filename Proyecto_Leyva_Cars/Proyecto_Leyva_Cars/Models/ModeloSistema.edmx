@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LeyvaCarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CodigoVerificacion">
+          <Key>
+            <PropertyRef Name="Id_Codigo" />
+          </Key>
+          <Property Name="Id_Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Usuario" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="TipoVerificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime2" Precision="7" />
+          <Property Name="FechaExpiracion" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Usado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Consultas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreCliente" Type="nvarchar" MaxLength="255" />
+          <Property Name="TelefonoCliente" Type="nvarchar" MaxLength="20" />
+          <Property Name="MarcaVehiculo" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModeloVehiculo" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnioVehiculo" Type="int" />
+          <Property Name="RutaImagen" Type="nvarchar" MaxLength="500" />
+          <Property Name="NombresDetectadosIA" Type="nvarchar(max)" />
+          <Property Name="ProductoId" Type="int" />
+          <Property Name="TipoConsulta" Type="nvarchar" MaxLength="50" />
+          <Property Name="MensajeWhatsApp" Type="nvarchar(max)" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="RespuestaVendedor" Type="nvarchar(max)" />
+          <Property Name="FechaConsulta" Type="datetime2" Precision="7" />
+          <Property Name="FechaRespuesta" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Pedidos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsultaId" Type="int" />
+          <Property Name="NombreCliente" Type="nvarchar" MaxLength="255" />
+          <Property Name="TelefonoCliente" Type="nvarchar" MaxLength="20" />
+          <Property Name="ProductoId" Type="int" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="PrecioAcordado" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notas" Type="nvarchar(max)" />
+          <Property Name="FechaCreacion" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Categoria" Type="nvarchar" MaxLength="100" />
+          <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="UrlImagen" Type="nvarchar" MaxLength="500" />
+          <Property Name="Marca" Type="nvarchar" MaxLength="100" />
+          <Property Name="ModelosCompatibles" Type="nvarchar(max)" />
+          <Property Name="FechaCreacion" Type="datetime2" Precision="7" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime2" Precision="7" />
+          <Property Name="Activo" Type="bit" />
+        </EntityType>
+        <Association Name="FK__CodigoVer__Id_Us__2B3F6F97">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CodigoVerificacion" Type="Self.CodigoVerificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="CodigoVerificacion">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultas__Produ__35BCFE0A">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consultas">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__Consult__3B75D760">
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="0..1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="ConsultaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__Product__3C69FB99">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeyvaCarModelStoreContainer">
+          <EntitySet Name="CodigoVerificacion" EntityType="Self.CodigoVerificacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consultas" EntityType="Self.Consultas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CodigoVer__Id_Us__2B3F6F97" Association="Self.FK__CodigoVer__Id_Us__2B3F6F97">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CodigoVerificacion" EntitySet="CodigoVerificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultas__Produ__35BCFE0A" Association="Self.FK__Consultas__Produ__35BCFE0A">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__Consult__3B75D760" Association="Self.FK__Pedidos__Consult__3B75D760">
+            <End Role="Consultas" EntitySet="Consultas" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__Product__3C69FB99" Association="Self.FK__Pedidos__Product__3C69FB99">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LeyvaCarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CodigoVerificacion">
+          <Key>
+            <PropertyRef Name="Id_Codigo" />
+          </Key>
+          <Property Name="Id_Codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TipoVerificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="7" />
+          <Property Name="FechaExpiracion" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Usado" Type="Boolean" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__CodigoVer__Id_Us__2B3F6F97" FromRole="CodigoVerificacion" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Consultas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MarcaVehiculo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModeloVehiculo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnioVehiculo" Type="Int32" />
+          <Property Name="RutaImagen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NombresDetectadosIA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductoId" Type="Int32" />
+          <Property Name="TipoConsulta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MensajeWhatsApp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RespuestaVendedor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaConsulta" Type="DateTime" Precision="7" />
+          <Property Name="FechaRespuesta" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Consultas__Produ__35BCFE0A" FromRole="Consultas" ToRole="Productos" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK__Pedidos__Consult__3B75D760" FromRole="Consultas" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="Pedidos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsultaId" Type="Int32" />
+          <Property Name="NombreCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TelefonoCliente" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ProductoId" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="PrecioAcordado" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Consultas" Relationship="Self.FK__Pedidos__Consult__3B75D760" FromRole="Pedidos" ToRole="Consultas" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__Pedidos__Product__3C69FB99" FromRole="Pedidos" ToRole="Productos" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Precio" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="UrlImagen" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Marca" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ModelosCompatibles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="7" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="Consultas" Relationship="Self.FK__Consultas__Produ__35BCFE0A" FromRole="Productos" ToRole="Consultas" />
+          <NavigationProperty Name="Pedidos" Relationship="Self.FK__Pedidos__Product__3C69FB99" FromRole="Productos" ToRole="Pedidos" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id_Usuario" />
+          </Key>
+          <Property Name="Id_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Precision="7" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="CodigoVerificacion" Relationship="Self.FK__CodigoVer__Id_Us__2B3F6F97" FromRole="Usuarios" ToRole="CodigoVerificacion" />
+        </EntityType>
+        <Association Name="FK__CodigoVer__Id_Us__2B3F6F97">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CodigoVerificacion" Type="Self.CodigoVerificacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id_Usuario" />
+            </Principal>
+            <Dependent Role="CodigoVerificacion">
+              <PropertyRef Name="Id_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Consultas__Produ__35BCFE0A">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consultas">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__Consult__3B75D760">
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="0..1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consultas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="ConsultaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pedidos__Product__3C69FB99">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pedidos">
+              <PropertyRef Name="ProductoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LeyvaCarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CodigoVerificacion" EntityType="Self.CodigoVerificacion" />
+          <EntitySet Name="Consultas" EntityType="Self.Consultas" />
+          <EntitySet Name="Pedidos" EntityType="Self.Pedidos" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__CodigoVer__Id_Us__2B3F6F97" Association="Self.FK__CodigoVer__Id_Us__2B3F6F97">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CodigoVerificacion" EntitySet="CodigoVerificacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultas__Produ__35BCFE0A" Association="Self.FK__Consultas__Produ__35BCFE0A">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__Consult__3B75D760" Association="Self.FK__Pedidos__Consult__3B75D760">
+            <End Role="Consultas" EntitySet="Consultas" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pedidos__Product__3C69FB99" Association="Self.FK__Pedidos__Product__3C69FB99">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="Pedidos" EntitySet="Pedidos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LeyvaCarModelStoreContainer" CdmEntityContainer="LeyvaCarEntities">
+          <EntitySetMapping Name="CodigoVerificacion">
+            <EntityTypeMapping TypeName="LeyvaCarModel.CodigoVerificacion">
+              <MappingFragment StoreEntitySet="CodigoVerificacion">
+                <ScalarProperty Name="Id_Codigo" ColumnName="Id_Codigo" />
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="TipoVerificacion" ColumnName="TipoVerificacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaExpiracion" ColumnName="FechaExpiracion" />
+                <ScalarProperty Name="Usado" ColumnName="Usado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consultas">
+            <EntityTypeMapping TypeName="LeyvaCarModel.Consultas">
+              <MappingFragment StoreEntitySet="Consultas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="TelefonoCliente" ColumnName="TelefonoCliente" />
+                <ScalarProperty Name="MarcaVehiculo" ColumnName="MarcaVehiculo" />
+                <ScalarProperty Name="ModeloVehiculo" ColumnName="ModeloVehiculo" />
+                <ScalarProperty Name="AnioVehiculo" ColumnName="AnioVehiculo" />
+                <ScalarProperty Name="RutaImagen" ColumnName="RutaImagen" />
+                <ScalarProperty Name="NombresDetectadosIA" ColumnName="NombresDetectadosIA" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="TipoConsulta" ColumnName="TipoConsulta" />
+                <ScalarProperty Name="MensajeWhatsApp" ColumnName="MensajeWhatsApp" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="RespuestaVendedor" ColumnName="RespuestaVendedor" />
+                <ScalarProperty Name="FechaConsulta" ColumnName="FechaConsulta" />
+                <ScalarProperty Name="FechaRespuesta" ColumnName="FechaRespuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedidos">
+            <EntityTypeMapping TypeName="LeyvaCarModel.Pedidos">
+              <MappingFragment StoreEntitySet="Pedidos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
+                <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
+                <ScalarProperty Name="TelefonoCliente" ColumnName="TelefonoCliente" />
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="PrecioAcordado" ColumnName="PrecioAcordado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="LeyvaCarModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="ModelosCompatibles" ColumnName="ModelosCompatibles" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="LeyvaCarModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

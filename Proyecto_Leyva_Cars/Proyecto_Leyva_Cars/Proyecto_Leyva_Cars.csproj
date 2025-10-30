@@ -1,5 +1,4 @@
-﻿<!-- Archivo reparado: solo un elemento raíz <Project> y todos los <Content> dentro de <ItemGroup> -->
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -52,6 +51,10 @@
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -68,7 +71,6 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
@@ -100,37 +102,81 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
-    <Content Include="Assets\css\home.css" />
-    <Content Include="Assets\imagenes\chevroletlogo.png" />
-    <Content Include="Assets\imagenes\fordlogo.png" />
-    <Content Include="Assets\imagenes\hondalogo.png" />
-    <Content Include="Assets\imagenes\kialogo.png" />
-    <Content Include="Assets\imagenes\logotoyota.png" />
-    <Content Include="Assets\imagenes\nissanlogo.png" />
+    <Content Include="Assets\css\chat-styles.css" />
     <Content Include="Assets\js\bootstrap.bundle.js" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
     <Content Include="Assets\js\bootstrap.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
-    <Content Include="Assets\js\home.js" />
+    <Content Include="Assets\js\chat-app.js" />
     <Content Include="Assets\js\jquery-3.7.1.min.js" />
     <Content Include="Content\Site.css" />
+	<Content Include="uploads\consultas\" />
+	
     <Content Include="Global.asax" />
+    <Content Include="Models\ModeloSistema.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloSistema.edmx</DependentUpon>
+      <LastGenOutput>ModeloSistema.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModeloSistema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloSistema.edmx</DependentUpon>
+      <LastGenOutput>ModeloSistema1.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CodigoVerificacion.cs" />
+    <Compile Include="Models\CodigoVerificacion.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Consultas.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloSistema.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloSistema.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModeloSistema.cs" />
-    <Compile Include="Models\Usuarios.cs" />
+    <Compile Include="Models\ModeloSistema.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloSistema.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModeloSistema1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pedidos.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Productos.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuarios.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ServicioBusquedaProductos.cs" />
+    <Compile Include="Services\ServicioGemini.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <EntityDeploy Include="Models\ModeloSistema.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloSistema.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModeloSistema.edmx.diagram">
+      <DependentUpon>ModeloSistema.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -138,6 +184,7 @@
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\VerificarEmail.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Chat\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -147,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

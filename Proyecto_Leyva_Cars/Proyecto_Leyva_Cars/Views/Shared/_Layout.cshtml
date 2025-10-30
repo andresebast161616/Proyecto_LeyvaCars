@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>LeyvaCars</title>
+    <title>@ViewBag.Title - LeyvaCars</title>
     <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
@@ -23,6 +23,9 @@
 
     <!-- Tu CSS personalizado -->
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <!-- NUEVA SECCIÓN: Estilos específicos de cada vista -->
+    @RenderSection("Styles", required: false)
 
     <style>
         body {
@@ -76,6 +79,9 @@
                 text-transform: uppercase;
                 transition: 0.3s;
                 position: relative;
+                display: flex;
+                align-items: center;
+                gap: 5px;
             }
 
                 .navbar-nav .nav-link:hover {
@@ -173,13 +179,15 @@
             }
         }
 
-        /*.main-container {
-            padding: 2rem 0;
-        }*/
         .main-container {
             padding: 0 !important;
         }
 
+        /* Mejoras para el icono del Chat IA */
+        .chat-icon {
+            font-size: 1.1em;
+            margin-right: 5px;
+        }
     </style>
 </head>
 
@@ -190,27 +198,33 @@
 
             <!-- IZQUIERDA: logo + menú -->
             <div class="navbar-left">
-                <a class="navbar-brand" href="~/Home/Index">
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                     <img src="~/Assets/images/logo.png" alt="Logo" />
                 </a>
 
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="">Home</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Productos</a>
+                        <a class="nav-link" href="#">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Contactanos</a>
+                        <a class="nav-link" href="#">Contactanos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Mas</a>
+                        <a class="nav-link" href="#">Mas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Chat")">
+                            <i class="fas fa-robot chat-icon"></i>
+                            Chat IA
+                        </a>
                     </li>
                 </ul>
             </div>
 
-            
+            <!-- DERECHA: buscador + botones -->
             <div class="navbar-right">
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
@@ -221,7 +235,7 @@
                     <a href="#" class="auth-btn login">
                         <i class="fas fa-sign-in-alt"></i> INICIAR SESIÓN
                     </a>
-                    <a href="~/Usuarios/Create" class="auth-btn register">
+                    <a href="@Url.Action("Create", "Usuarios")" class="auth-btn register">
                         <i class="fas fa-user-plus"></i> CREAR CUENTA
                     </a>
                 </div>
@@ -232,18 +246,24 @@
     <!-- CONTENIDO PRINCIPAL -->
     <div class="container-fluid main-container">
         @RenderBody()
-
-        <script src="~/Assets/js/bootstrap.bundle.min.js"></script>
-        <script>
-            document.getElementById('searchInput').addEventListener('keypress', function (e) {
-                if (e.key === 'Enter') {
-                    const searchTerm = this.value.trim();
-                    if (searchTerm !== '') {
-                        console.log('Buscando: ' + searchTerm);
-                    }
-                }
-            });
-        </script>
     </div>
+
+    <!-- Scripts base -->
+    <script src="~/Assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- NUEVA SECCIÓN: Scripts específicos de cada vista -->
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                const searchTerm = this.value.trim();
+                if (searchTerm !== '') {
+                    console.log('Buscando: ' + searchTerm);
+                    // Aquí puedes agregar la lógica de búsqueda
+                }
+            }
+        });
+    </script>
 </body>
 </html>
