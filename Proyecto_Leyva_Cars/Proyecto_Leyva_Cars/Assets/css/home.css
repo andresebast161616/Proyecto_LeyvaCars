@@ -1,0 +1,224 @@
+﻿/* ====================================
+   HERO/BUSCADOR AUTOPARTES - STYLES
+   ==================================== */
+
+/* Sección principal */
+.hero-search-section {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Contenedor principal */
+.hero-search-container {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1400px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Título principal */
+.hero-title {
+    color: white;
+    font-size: 3.75rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-align: center;
+    letter-spacing: -0.025em;
+    filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.4));
+}
+
+/* Subtítulo */
+.hero-subtitle {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.3));
+}
+
+/* Formulario de búsqueda */
+.search-form {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background-color: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Campo de búsqueda individual */
+.search-field {
+    flex: 1;
+    min-width: 0;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: none;
+}
+
+/* Label del campo */
+.search-label {
+    display: block;
+    color: #9ca3af;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Select del campo */
+.search-select {
+    width: 100%;
+    background-color: transparent;
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Botón de búsqueda */
+.search-button {
+    background-color: #dc2626;
+    color: white;
+    padding: 1.5rem 4rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+}
+
+    .search-button:hover {
+        background-color: #b91c1c;
+    }
+
+/* Icono de búsqueda */
+.search-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Texto informativo */
+.hero-info-text {
+    color: white;
+    font-size: 0.875rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    opacity: 0.9;
+}
+
+/* ====================================
+   RESPONSIVE DESIGN - DESKTOP
+   ==================================== */
+
+@media (min-width: 768px) {
+    /* Formulario en fila horizontal */
+    .search-form {
+        flex-direction: row;
+    }
+
+    /* Bordes en desktop */
+    .search-field {
+        border-bottom: none;
+        border-right: 1px solid #e5e7eb;
+    }
+
+        /* Último campo sin borde derecho */
+        .search-field:last-of-type {
+            border-right: 1px solid #e5e7eb;
+        }
+
+    /* Título más grande en desktop */
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.875rem;
+    }
+}
+
+/* ====================================
+   RESPONSIVE DESIGN - MOBILE
+   ==================================== */
+
+@media (max-width: 767px) {
+    .hero-search-section {
+        height: auto;
+        min-height: 500px;
+        padding: 3rem 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.125rem;
+    }
+
+    .search-button {
+        padding: 1.25rem 2rem;
+    }
+}
+
+
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.hover-lift:hover {
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(17, 147, 212, 0.25);
+}
+
+/* FORZAR ANCHO COMPLETO */
+body, html {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+* {
+    box-sizing: border-box;
+}

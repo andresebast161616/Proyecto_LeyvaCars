@@ -1,0 +1,39 @@
+﻿/* brand-carousel.css */
+
+.brand-carousel-section {
+    width: 100%;
+    overflow: hidden;
+    padding: 0px 0;
+    background-color: red;
+}
+
+.brand-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0; /* Espacio extra para el zoom */
+}
+
+.brand-carousel-track {
+    display: flex;
+    gap: 120px;
+    align-items: center;
+    width: fit-content;
+    will-change: transform;
+    padding: 20px 0; /* Espacio adicional arriba y abajo */
+}
+
+.brand-carousel-img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    filter: brightness(0) invert(1); /* Convierte las imágenes a blanco */
+}
+
+    .brand-carousel-img:hover {
+        opacity: 1;
+        transform: scale(1.15);
+        filter: brightness(0) invert(1); /* Mantiene el blanco en hover */
+    }

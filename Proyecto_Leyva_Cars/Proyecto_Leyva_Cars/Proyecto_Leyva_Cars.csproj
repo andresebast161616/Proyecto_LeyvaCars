@@ -102,16 +102,28 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\css\brand-carousel.css" />
     <Content Include="Assets\css\chat-styles.css" />
+    <Content Include="Assets\css\footer.css" />
+    <Content Include="Assets\css\home.css" />
+    <Content Include="Assets\css\productos.css" />
+    <Content Include="Assets\imagenes\carga.gif" />
+    <Content Include="Assets\imagenes\chevroletlogo.png" />
+    <Content Include="Assets\imagenes\fordlogo.png" />
+    <Content Include="Assets\imagenes\hondalogo.png" />
+    <Content Include="Assets\imagenes\kialogo.png" />
+    <Content Include="Assets\imagenes\logotoyota.png" />
+    <Content Include="Assets\imagenes\nissanlogo.png" />
     <Content Include="Assets\js\bootstrap.bundle.js" />
     <Content Include="Assets\js\bootstrap.bundle.min.js" />
     <Content Include="Assets\js\bootstrap.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\brand-carousel.js" />
     <Content Include="Assets\js\chat-app.js" />
+    <Content Include="Assets\js\home.js" />
     <Content Include="Assets\js\jquery-3.7.1.min.js" />
     <Content Include="Content\Site.css" />
-	<Content Include="uploads\consultas\" />
-	
+    <Content Include="uploads\consultas\" />
     <Content Include="Global.asax" />
     <Content Include="Models\ModeloSistema.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

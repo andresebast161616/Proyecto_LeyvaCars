@@ -6,61 +6,56 @@
     <link href="~/Assets/css/chat-styles.css" rel="stylesheet" />
 }
 
-<div class="container-fluid py-4">
-    <!-- Header Principal -->
-    <div class="row mb-4">
-        <div class="col-12 text-center">
-            <h1 class="display-5 fw-bold text-primary mb-2">
-                🤖 Identificador de Piezas con IA
-            </h1>
-            <p class="lead text-muted">
-                Sube una foto de tu pieza automotriz y nuestro sistema te ayudará a encontrarla
-            </p>
-        </div>
-    </div>
-
-    <div class="row g-4">
-        <!-- COLUMNA IZQUIERDA: Datos del Vehículo (3/12) -->
-        <div class="col-lg-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">
-                        🚗 Datos del Vehículo
-                    </h5>
+<div class="main-container">
+    <div class="row g-3">
+        <!-- COLUMNA IZQUIERDA: Datos del Vehículo -->
+        <div class="col-lg-3 col-md-12">
+            <div class="card-modern">
+                <div class="card-header-modern">
+                    <svg class="header-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 17H4C3.44772 17 3 16.5523 3 16V12L5.4 7.2C5.75556 6.48889 6.46667 6 7.26667 6H16.7333C17.5333 6 18.2444 6.48889 18.6 7.2L21 12V16C21 16.5523 20.5523 17 20 17H19M5 17C5 18.1046 5.89543 19 7 19C8.10457 19 9 18.1046 9 17M5 17C5 15.8954 5.89543 15 7 15C8.10457 15 9 15.8954 9 17M19 17C19 18.1046 18.1046 19 17 19C15.8954 19 15 18.1046 15 17M19 17C19 15.8954 18.1046 15 17 15C15.8954 15 15 15.8954 15 17M9 17H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <h5 class="header-title-modern">Datos del Vehículo</h5>
                 </div>
-                <div class="card-body">
+                <div class="card-body-modern">
                     <form id="vehiculoForm">
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Marca</label>
-                            <input type="text" id="marcaVehiculo" class="form-control" placeholder="Toyota, Ford, etc.">
+                        <div class="form-group-modern">
+                            <label class="form-label-modern">Marca</label>
+                            <input type="text" id="marcaVehiculo" class="form-input-modern" placeholder="Ej: Toyota, Ford">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Modelo</label>
-                            <input type="text" id="modeloVehiculo" class="form-control" placeholder="Corolla, Focus, etc.">
+
+                        <div class="form-group-modern">
+                            <label class="form-label-modern">Modelo</label>
+                            <input type="text" id="modeloVehiculo" class="form-input-modern" placeholder="Ej: Corolla, Focus">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Año</label>
-                            <input type="number" id="anioVehiculo" class="form-control" placeholder="2020" min="1990" max="2030">
+
+                        <div class="form-group-modern">
+                            <label class="form-label-modern">Año</label>
+                            <input type="number" id="anioVehiculo" class="form-input-modern" placeholder="Ej: 2020" min="1990" max="2030">
                         </div>
 
                         <!-- Zona de Subida de Imagen -->
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Imagen de la Pieza</label>
-                            <div id="dropZone" class="border border-2 border-dashed rounded p-3 text-center cursor-pointer hover-effect">
-                                <div id="dropContent">
-                                    <div class="display-6 text-muted mb-2">☁️</div>
-                                    <p class="mb-1 small">Arrastra tu imagen o haz clic</p>
-                                    <p class="text-muted small">JPG, PNG (máx. 4MB)</p>
+                        <div class="form-group-modern">
+                            <label class="form-label-modern">Imagen de la Pieza</label>
+                            <div id="dropZone" class="upload-zone-modern">
+                                <div id="dropContent" class="upload-content-modern">
+                                    <svg class="upload-icon-svg" width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                        <path d="M9 17V11L7 13M9 11L11 13M9 11V17M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V9M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <p class="upload-text-modern">
+                                        <span class="text-purple">Sube un archivo</span> o arrástralo aquí
+                                    </p>
+                                    <p class="upload-subtext-modern">PNG, JPG hasta 4MB</p>
                                 </div>
                                 <input type="file" id="imageInput" accept="image/*" class="d-none">
                             </div>
 
-                            <!-- Vista Previa Compacta -->
+                            <!-- Vista Previa -->
                             <div id="imagePreview" class="d-none mt-3">
                                 <div class="text-center">
-                                    <img id="previewImg" class="img-thumbnail" style="max-height: 120px; max-width: 100%;">
+                                    <img id="previewImg" class="preview-image-modern">
                                     <div class="mt-2">
-                                        <button type="button" id="removeImage" class="btn btn-outline-danger btn-sm">
+                                        <button type="button" id="removeImage" class="btn-remove-modern">
                                             🗑️ Quitar
                                         </button>
                                     </div>
@@ -69,62 +64,76 @@
                         </div>
 
                         <!-- Botón Principal -->
-                        <button type="button" id="analizarBtn" class="btn btn-success w-100 py-2 fw-bold">
-                            🔍 Analizar con IA
+                        <button type="button" id="analizarBtn" class="btn-analyze-modern">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
+                            </svg>
+                            Analizar con IA
                         </button>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- COLUMNA CENTRAL: Chat y Conversación (6/12) -->
-        <div class="col-lg-6">
-            <div class="card shadow-sm h-100">
-                <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">
-                        💬 Chat con IA
-                    </h5>
-                    <span id="statusIndicator" class="badge bg-secondary">Listo</span>
+        <!-- COLUMNA CENTRAL: Chat -->
+        <div class="col-lg-6 col-md-12">
+            <div class="card-modern">
+                <div class="card-header-modern">
+                    <div class="header-left-modern">
+                        <svg class="header-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M8 12H8.01M12 12H12.01M16 12H16.01M21 12C21 16.4183 16.9706 20 12 20C10.4607 20 9.01172 19.6565 7.74467 19.0511L3 20L4.39499 16.28C3.51156 15.0423 3 13.5743 3 12C3 7.58172 7.02944 4 12 4C16.9706 4 21 7.58172 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <h5 class="header-title-modern">Chat con IA</h5>
+                    </div>
+                    <span id="statusIndicator" class="status-badge-modern">Listo</span>
                 </div>
-                
+
                 <!-- Área de Mensajes -->
-                <div class="card-body p-0 chat-container">
-                    <div id="chatMessages" class="p-3 overflow-auto h-100">
-                        <div class="text-center text-muted py-5">
-                            <div class="display-1 text-secondary mb-3">🤖</div>
-                            <p class="mb-0">Completa los datos y sube una imagen para comenzar</p>
+                <div class="card-body-modern chat-body-modern">
+                    <div id="chatMessages" class="chat-messages-modern">
+                        <div class="empty-state-modern">
+                            <div class="empty-icon-circle" style="background: none; box-shadow: none;">
+                                <img src="~/Assets/imagenes/carga.gif" alt="Cargando..." style="width:260px;height:260px;object-fit:contain;" />
+                            </div>
+                            <p class="empty-text-modern">Esperando datos</p>
+                            <p class="empty-subtext-modern">Completa los datos del vehículo y sube<br>una imagen para comenzar.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Loading en el Chat -->
+                <!-- Loading -->
                 <div id="chatLoading" class="d-none">
-                    <div class="card-footer bg-light">
-                        <div class="d-flex align-items-center">
-                            <div class="spinner-border spinner-border-sm text-primary me-3" role="status"></div>
-                            <div>
-                                <div class="fw-bold">Analizando imagen con IA...</div>
-                                <small class="text-muted">Esto puede tomar unos segundos</small>
-                            </div>
+                    <div class="loading-container-modern">
+                        <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
+                        <div>
+                            <div class="loading-text-modern">Analizando imagen con IA...</div>
+                            <small class="loading-subtext-modern">Esto puede tomar unos segundos</small>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- COLUMNA DERECHA: Resultados (3/12) -->
-        <div class="col-lg-3">
-            <div class="card shadow-sm h-100">
-                <div class="card-header bg-success text-white">
-                    <h5 class="card-title mb-0">
-                        🔍 Resultados
-                    </h5>
+        <!-- COLUMNA DERECHA: Resultados -->
+        <div class="col-lg-3 col-md-12">
+            <div class="card-modern">
+                <div class="card-header-modern">
+                    <svg class="header-icon-svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M19.0711 10.6569C20.6331 12.2189 20.6331 14.781 19.0711 16.3431C17.509 17.9051 14.9469 17.9051 13.3848 16.3431C11.8228 14.781 11.8228 12.2189 13.3848 10.6569C14.9469 9.09481 17.509 9.09481 19.0711 10.6569Z" stroke="currentColor" stroke-width="2" />
+                        <path d="M19.0711 10.6569L21.1421 8.58579M13.3848 16.3431L10.606 19.1219C9.63295 20.0949 8.07312 20.0949 7.10005 19.1219C6.12699 18.1488 6.12699 16.589 7.10005 15.6159L9.87879 12.8372" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+                    <h5 class="header-title-modern">Resultados</h5>
                 </div>
-                <div class="card-body p-0">
-                    <div id="productosContainer" class="productos-container">
-                        <div class="text-center text-muted py-5 px-3">
-                            <div class="display-1 text-secondary mb-3">🔍</div>
-                            <p class="mb-0 small">Los resultados aparecerán aquí después del análisis</p>
+                <div class="card-body-modern results-body-modern">
+                    <div id="productosContainer" class="productos-container-modern">
+                        <div class="empty-state-modern">
+                            <div class="empty-icon-circle">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="11" cy="11" r="7" stroke="#222" stroke-width="2" />
+                                    <path d="M20 20L17 17" stroke="#888" stroke-width="2" stroke-linecap="round" />
+                                </svg>
+                            </div>
+                            <p class="empty-text-small-modern">Los resultados del análisis aparecerán aquí una vez completado.</p>
                         </div>
                     </div>
                 </div>
@@ -136,3 +145,4 @@
 @section Scripts {
     <script src="~/Assets/js/chat-app.js"></script>
 }
+
