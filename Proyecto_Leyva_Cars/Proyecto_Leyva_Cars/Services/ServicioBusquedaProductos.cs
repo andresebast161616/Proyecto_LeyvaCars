@@ -171,6 +171,81 @@ namespace Proyecto_Leyva_Cars.Services
         {
             _context?.Dispose();
         }
+
+        // NUEVOS MÉTODOS PARA LA PÁGINA PRINCIPAL
+        public List<Productos> ObtenerProductosRecientes(int cantidad = 10)
+        {
+            try
+            {
+                return _context.Productos
+                    .Where(p => p.Activo == true && p.Stock > 0)
+                    .OrderByDescending(p => p.FechaCreacion ?? DateTime.MinValue)
+                    .ThenByDescending(p => p.Id)
+                    .Take(cantidad)
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Productos>();
+            }
+        }
+
+        public List<Productos> ObtenerProductosPorCategoria(string categoria, int cantidad = 8)
+        {
+            try
+            {
+                var query = _context.Productos
+                    .Where(p => p.Activo == true && p.Stock > 0);
+
+                if (!string.IsNullOrEmpty(categoria))
+                {
+                    query = query.Where(p => p.Categoria.ToLower().Contains(categoria.ToLower()));
+                }
+
+                return query
+                    .OrderByDescending(p => p.FechaCreacion ?? DateTime.MinValue)
+                    .Take(cantidad)
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Productos>();
+            }
+        }
+
+        public List<string> ObtenerTodasLasCategorias()
+        {
+            try
+            {
+                return _context.Productos
+                    .Where(p => p.Activo == true && !string.IsNullOrEmpty(p.Categoria))
+                    .Select(p => p.Categoria)
+                    .Distinct()
+                    .OrderBy(c => c)
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<string>();
+            }
+        }
+
+        public List<string> ObtenerTodasLasMarcas()
+        {
+            try
+            {
+                return _context.Productos
+                    .Where(p => p.Activo == true && !string.IsNullOrEmpty(p.Marca))
+                    .Select(p => p.Marca)
+                    .Distinct()
+                    .OrderBy(m => m)
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<string>();
+            }
+        }
     }
 
     internal class ProductoConPuntuacion

@@ -1,23 +1,9 @@
 ﻿@{
     ViewBag.Title = "Inicio";
     ViewBag.FullWidth = true;
+    var productosRecientes = ViewBag.ProductosRecientes as List<Proyecto_Leyva_Cars.Models.Productos> ?? new List<Proyecto_Leyva_Cars.Models.Productos>();
 }
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SoftParts - Gestión de Repuestos Automotrices con IA</title>
 
-    <!-- Fonts & Tailwind -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/Assets/js/home.js"></script>
-    <link rel="stylesheet" href="/Assets/css/home.css" />
-
-</head>
-<body class="bg-gray-50 text-gray-800">
     <!-- HERO/BUSCADOR AUTOPARTES -->
     <section class="hero-search-section">
         <div class="hero-search-container">
@@ -107,7 +93,7 @@
     <link rel="stylesheet" href="/Assets/css/brand-carousel.css" />
     <script src="/Assets/js/brand-carousel.js"></script>
 
-    <!-- NUEVOS INGRESOS -->
+<!-- NUEVOS INGRESOS -->
     <link rel="stylesheet" href="~/Assets/css/productos.css" />
     <section class="nuevos-ingresos-section">
         <div class="nuevos-ingresos-header">
@@ -116,421 +102,59 @@
         </div>
 
         <div class="productos-container">
-            <!-- Producto 1 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
+            @if (productosRecientes.Any())
+            {
+                foreach (var producto in productosRecientes.Take(10))
+                {
+                    <div class="producto-card">
+                        <div class="producto-image">
+                            @if (!string.IsNullOrEmpty(producto.UrlImagen))
+                            {
+                                <img src="@producto.UrlImagen" alt="@producto.Nombre" />
+                            }
+                            else
+                            {
+                                <div class="producto-no-image">
+                                    <span class="material-symbols-outlined">car_repair</span>
+                                </div>
+                            }
+                        </div>
+                        <div class="producto-info">
+                            <h3 class="producto-nombre">@producto.Nombre</h3>
+                            <p class="producto-categoria">@producto.Categoria</p>
+                            <p class="producto-marca">@producto.Marca</p>
+                            <div class="producto-precio">
+                                @if (producto.Precio.HasValue)
+                                {
+                                    <span class="precio">S/ @producto.Precio.Value.ToString("F2")</span>
+                                }
+                                else
+                                {
+                                    <span class="precio">Consultar precio</span>
+                                }
+                            </div>
+                            <div class="producto-stock">
+                                @if (producto.Stock.HasValue && producto.Stock > 0)
+                                {
+                                    <span class="stock-disponible">Stock: @producto.Stock</span>
+                                }
+                                else
+                                {
+                                    <span class="stock-agotado">Sin stock</span>
+                                }
+                            </div>
+                            <button class="producto-btn">Ver detalles</button>
+                        </div>
                     </div>
+                }
+            }
+            else
+            {
+                <div class="no-productos">
+                    <p>No hay productos disponibles en este momento.</p>
                 </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 2 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 3 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 4 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 5 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 6 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 7 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 8 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 9 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
-
-            <!-- Producto 10 -->
-            <div class="producto-card">
-                <div class="producto-badge">NUEVO</div>
-                <div class="producto-imagen">
-                    <img src="ruta-imagen-producto.jpg" alt="Producto" class="img-producto">
-                    <div class="producto-overlay">
-                        <button class="btn-vista-rapida">
-                            <i class="fas fa-eye"></i>
-                            Vista rápida
-                        </button>
-                    </div>
-                </div>
-                <div class="producto-info">
-                    <h3 class="producto-nombre">Nombre del Producto</h3>
-                    <p class="producto-codigo">Código: ABC123</p>
-                    <p class="producto-precio">S/ 0.00</p>
-                    <div class="producto-cantidad">
-                        <button class="btn-cantidad btn-menos">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" class="input-cantidad" min="1">
-                        <button class="btn-cantidad btn-mas">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                    <button class="btn-añadir">
-                        <i class="fas fa-shopping-cart"></i>
-                        Añadir al carrito
-                    </button>
-                </div>
-            </div>
+            }
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <link rel="stylesheet" href="/Assets/css/footer.css" />
-    <footer class="footer-custom">
-        <div class="footer-container">
-            <!-- Logo y descripción -->
-            <div class="footer-column footer-brand">
-                <img src="logo-softparts.png" alt="SoftParts" class="footer-logo">
-                <p class="footer-description">
-                    Somos una empresa dedicada a soluciones tecnológicas para repuestos y accesorios de automóviles a nivel nacional.
-                </p>
-            </div>
-
-            <!-- Información -->
-            <div class="footer-column">
-                <h4 class="footer-title">Información</h4>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Productos</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Noticias</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contacto</a></li>
-                </ul>
-
-                <!-- Libro de reclamaciones -->
-                <div class="footer-libro">
-                    <a href="#" class="libro-btn">
-                        <i class="fas fa-book"></i>
-                        <div>
-                            <span class="libro-title">Libro de</span>
-                            <span class="libro-subtitle">reclamaciones</span>
-                            <span class="libro-badge">DIGITAL</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Soporte -->
-            <div class="footer-column">
-                <h4 class="footer-title">Soporte</h4>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Términos y condiciones</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Política de privacidad</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Cambios y devoluciones</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Ayuda</a></li>
-                </ul>
-            </div>
-
-            <!-- Dirección y Horario -->
-            <div class="footer-column">
-                <div class="footer-info-block">
-                    <h4 class="footer-subtitle"><i class="fas fa-map-marker-alt"></i> DIRECCIÓN</h4>
-                    <p>Av. México 922-924-926</p>
-                    <p>La Victoria, Lima</p>
-                    <p class="footer-spacing">Av. Paseo de la Rep. 2349</p>
-                    <p>La Victoria, Lima</p>
-                </div>
-                <div class="footer-info-block">
-                    <h4 class="footer-subtitle"><i class="fas fa-clock"></i> HORARIO</h4>
-                    <p>Lun. a Vie. de 8am a 6pm</p>
-                    <p>Sáb. de 9am a 4pm</p>
-                </div>
-            </div>
-
-            <!-- WhatsApp y Correo -->
-            <div class="footer-column">
-                <div class="footer-info-block">
-                    <h4 class="footer-subtitle"><i class="fab fa-whatsapp"></i> WHATSAPP</h4>
-                    <a href="https://wa.me/51999030911" class="footer-contact-link">999 030 911</a>
-                </div>
-                <div class="footer-info-block">
-                    <h4 class="footer-subtitle"><i class="fas fa-envelope"></i> CORREO</h4>
-                    <a href="mailto:ventasperu@softparts.com.pe" class="footer-contact-link">ventasperu@softparts.com.pe</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Línea decorativa -->
-        <div class="footer-divider"></div>
-
-        <!-- Copyright -->
-        <div class="footer-bottom">
-            <p>&copy; 2024 SoftParts. Todos los derechos reservados.</p>
-            <div class="footer-social">
-                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-            </div>
-        </div>
-
-        <!-- Botón scroll to top -->
-        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="scroll-top">
-            <i class="fas fa-arrow-up"></i>
-        </a>
-    </footer>
-</body>
-</html>
+    </section>

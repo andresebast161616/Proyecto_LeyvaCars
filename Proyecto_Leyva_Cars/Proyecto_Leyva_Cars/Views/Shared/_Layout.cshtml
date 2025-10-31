@@ -10,24 +10,31 @@
     <title>@ViewBag.Title - LeyvaCars</title>
     <link href="~/Assets/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Fonts & Tailwind -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="~/Assets/js/jquery-3.7.1.min.js"></script>
-    <!-- Bootstrap 5 CSS -->
+    
+     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-
-    <!-- Tu CSS personalizado -->
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/Assets/css/home.css" />
+    <link rel="stylesheet" href="~/Assets/css/productos.css" />
+    <link rel="stylesheet" href="~/Assets/css/brand-carousel.css" />
+    <link rel="stylesheet" href="~/Assets/css/footer.css" />
+    
+    <!-- jQuery -->
+    <script src="~/Assets/js/jquery-3.7.1.min.js"></script>
 
     <!-- NUEVA SECCIÓN: Estilos específicos de cada vista -->
     @RenderSection("Styles", required: false)
-
-    <style>
+<style>
         body {
             font-family: 'Inter', sans-serif;
             padding-top: 70px;
@@ -243,27 +250,111 @@
         </div>
     </nav>
 
+
     <!-- CONTENIDO PRINCIPAL -->
-    <div class="container-fluid main-container">
+    <div class="main-content">
         @RenderBody()
     </div>
 
+    <!-- FOOTER -->
+    <footer class="footer-custom">
+        <div class="footer-container">
+            <!-- Logo y descripción -->
+            <div class="footer-column footer-brand">
+                <img src="logo-softparts.png" alt="SoftParts" class="footer-logo">
+                <p class="footer-description">
+                    Somos una empresa dedicada a soluciones tecnológicas para repuestos y accesorios de automóviles a nivel nacional.
+                </p>
+            </div>
+
+            <!-- Información -->
+            <div class="footer-column">
+                <h4 class="footer-title">Información</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Nosotros</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Productos</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Noticias</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+                </ul>
+
+                <!-- Libro de reclamaciones -->
+                <div class="footer-libro">
+                    <a href="#" class="libro-btn">
+                        <i class="fas fa-book"></i>
+                        <div>
+                            <span class="libro-title">Libro de</span>
+                            <span class="libro-subtitle">reclamaciones</span>
+                            <span class="libro-badge">DIGITAL</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Soporte -->
+            <div class="footer-column">
+                <h4 class="footer-title">Soporte</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Términos y condiciones</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Política de privacidad</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Cambios y devoluciones</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Ayuda</a></li>
+                </ul>
+            </div>
+
+            <!-- Dirección y Horario -->
+            <div class="footer-column">
+                <div class="footer-info-block">
+                    <h4 class="footer-subtitle"><i class="fas fa-map-marker-alt"></i> DIRECCIÓN</h4>
+                    <p>Av. México 922-924-926</p>
+                    <p>La Victoria, Lima</p>
+                    <p class="footer-spacing">Av. Paseo de la Rep. 2349</p>
+                    <p>La Victoria, Lima</p>
+                </div>
+                <div class="footer-info-block">
+                    <h4 class="footer-subtitle"><i class="fas fa-clock"></i> HORARIO</h4>
+                    <p>Lun. a Vie. de 8am a 6pm</p>
+                    <p>Sáb. de 9am a 4pm</p>
+                </div>
+            </div>
+
+            <!-- WhatsApp y Correo -->
+            <div class="footer-column">
+                <div class="footer-info-block">
+                    <h4 class="footer-subtitle"><i class="fab fa-whatsapp"></i> WHATSAPP</h4>
+                    <a href="https://wa.me/51999030911" class="footer-contact-link">999 030 911</a>
+                </div>
+                <div class="footer-info-block">
+                    <h4 class="footer-subtitle"><i class="fas fa-envelope"></i> CORREO</h4>
+                    <a href="mailto:ventasperu@softparts.com.pe" class="footer-contact-link">ventasperu@softparts.com.pe</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Línea decorativa -->
+        <div class="footer-divider"></div>
+
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 SoftParts. Todos los derechos reservados.</p>
+            <div class="footer-social">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <!-- Botón scroll to top -->
+        <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="scroll-top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </footer>
+
     <!-- Scripts base -->
-    <script src="~/Assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/js/home.js"></script>
+    <script src="~/Assets/js/brand-carousel.js"></script>
 
     <!-- NUEVA SECCIÓN: Scripts específicos de cada vista -->
     @RenderSection("Scripts", required: false)
-
-    <script>
-        document.getElementById('searchInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                const searchTerm = this.value.trim();
-                if (searchTerm !== '') {
-                    console.log('Buscando: ' + searchTerm);
-                    // Aquí puedes agregar la lógica de búsqueda
-                }
-            }
-        });
-    </script>
 </body>
 </html>

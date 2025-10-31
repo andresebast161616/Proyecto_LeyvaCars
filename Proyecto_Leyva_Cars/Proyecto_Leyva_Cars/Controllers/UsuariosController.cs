@@ -10,11 +10,15 @@ namespace Proyecto_Leyva_Cars.Controllers
         // CAMBIO: Usar el contexto generado desde el .edmx
         private LeyvaCarEntities db = new LeyvaCarEntities();
 
-        // GET: Usuarios
+        // GET: Usuarios - SOLO PARA ADMINISTRADORES
         public ActionResult Index()
         {
-            var usuarios = db.Usuarios.ToList();
-            return View(usuarios);
+            // TEMPORAL: Bloquear acceso hasta implementar roles de admin
+            return RedirectToAction("Index", "Home");
+            
+            // TODO: Agregar verificación de rol de administrador
+            // var usuarios = db.Usuarios.ToList();
+            // return View(usuarios);
         }
 
         // GET: Usuarios/Create
@@ -26,45 +30,79 @@ namespace Proyecto_Leyva_Cars.Controllers
         // POST: Usuarios/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Usuarios usuario)
+        public ActionResult Create(string NombreUsuario, string Correo, string Contrasena)
         {
             if (ModelState.IsValid)
             {
-                // CAMBIO: Usar Email en lugar de Correo (según tu modelo de BD)
-                if (db.Usuarios.Any(u => u.Email == usuario.Email))
+                try
                 {
-                    ModelState.AddModelError("Email", "Este correo ya está registrado");
-                    return View(usuario);
+                    // Verificar si el correo ya existe
+                    if (db.Usuarios.Any(u => u.Email == Correo))
+                    {
+                        ModelState.AddModelError("Correo", "Este correo ya está registrado");
+                        ViewBag.NombreUsuario = NombreUsuario;
+                        ViewBag.Correo = Correo;
+                        return View();
+                    }
+
+                    // MAPEAR correctamente los campos del formulario al modelo
+                    var usuario = new Usuarios
+                    {
+                        Nombre = NombreUsuario,        // NombreUsuario -> Nombre
+                        Apellido = "",                 // Campo vacío por ahora
+                        Email = Correo,               // Correo -> Email  
+                        PasswordHash = Contrasena,    // Contrasena -> PasswordHash (deberías hashearla)
+                        FechaRegistro = DateTime.Now,
+                        Activo = false
+                    };
+
+                    db.Usuarios.Add(usuario);
+                    db.SaveChanges();
+
+                    // Generar código de verificación
+                    string codigo = GenerarCodigoAleatorio();
+                    var codigoVerificacion = new CodigoVerificacion
+                    {
+                        Id_Usuario = usuario.Id_Usuario, // CAMBIO: Usar Id_Usuario
+                        Codigo = codigo,
+                        TipoVerificacion = "registro", // CAMBIO: Agregar tipo
+                        FechaCreacion = DateTime.Now,
+                        FechaExpiracion = DateTime.Now.AddMinutes(15),
+                        Usado = false // CAMBIO: Usar Usado en lugar de Verificado
+                    };
+                    db.CodigoVerificacion.Add(codigoVerificacion);
+                    db.SaveChanges();
+
+                    // Guardar datos en TempData para la vista de verificación
+                    TempData["IdUsuario"] = usuario.Id_Usuario;
+                    TempData["Correo"] = usuario.Email;
+                    TempData["Codigo"] = codigo;
+
+                    return RedirectToAction("VerificarEmail");
                 }
-
-                // Crear usuario (sin verificar aún)
-                usuario.FechaRegistro = DateTime.Now;
-                usuario.Activo = false; // CAMBIO: Usar Activo en lugar de EmailVerificado
-                db.Usuarios.Add(usuario);
-                db.SaveChanges();
-
-                // Generar código de verificación
-                string codigo = GenerarCodigoAleatorio();
-                var codigoVerificacion = new CodigoVerificacion
+                catch (System.Data.Entity.Validation.DbEntityValidationException ex)
                 {
-                    Id_Usuario = usuario.Id_Usuario, // CAMBIO: Usar Id_Usuario
-                    Codigo = codigo,
-                    TipoVerificacion = "registro", // CAMBIO: Agregar tipo
-                    FechaCreacion = DateTime.Now,
-                    FechaExpiracion = DateTime.Now.AddMinutes(15),
-                    Usado = false // CAMBIO: Usar Usado en lugar de Verificado
-                };
-                db.CodigoVerificacion.Add(codigoVerificacion);
-                db.SaveChanges();
-
-                // Guardar datos en TempData para la vista de verificación
-                TempData["IdUsuario"] = usuario.Id_Usuario;
-                TempData["Correo"] = usuario.Email;
-                TempData["Codigo"] = codigo;
-
-                return RedirectToAction("VerificarEmail");
+                    // CAPTURAR DETALLES DEL ERROR
+                    string errorDetails = "";
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            errorDetails += $"Campo: {validationError.PropertyName}, Error: {validationError.ErrorMessage}\n";
+                        }
+                    }
+                    
+                    // Mostrar el error en la vista
+                    ModelState.AddModelError("", "Error de validación: " + errorDetails);
+                    return View();
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Error general: " + ex.Message);
+                    return View();
+                }
             }
-            return View(usuario);
+            return View();
         }
 
         // GET: Usuarios/VerificarEmail
@@ -124,8 +162,78 @@ namespace Proyecto_Leyva_Cars.Controllers
             usuarioVerificado.Activo = true; // CAMBIO: Usar Activo
             db.SaveChanges();
 
-            TempData["Mensaje"] = "¡Email verificado correctamente! ✅";
-            return RedirectToAction("Index");
+            TempData["MensajeExito"] = "¡Email verificado correctamente! Ya puedes iniciar sesión.";
+            
+            // CAMBIO: Redirigir a Login en lugar de Index
+            return RedirectToAction("Login", "Usuarios");
+        }
+
+        // GET: Usuarios/Login
+        public ActionResult Login()
+        {
+            // Si ya está logueado, redirigir al Home
+            if (Session["UsuarioId"] != null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+        // POST: Usuarios/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(string Email, string Contrasena)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Contrasena))
+                {
+                    ModelState.AddModelError("", "Email y contraseña son requeridos");
+                    return View();
+                }
+
+                // Buscar usuario por email
+                var usuario = db.Usuarios
+                    .Where(u => u.Email == Email && u.PasswordHash == Contrasena)
+                    .FirstOrDefault();
+
+                if (usuario == null)
+                {
+                    ModelState.AddModelError("", "Email o contraseña incorrectos");
+                    return View();
+                }
+
+                if (usuario.Activo != true)
+                {
+                    ModelState.AddModelError("", "Debes verificar tu email antes de iniciar sesión");
+                    return View();
+                }
+
+                // CREAR SESIÓN
+                Session["UsuarioId"] = usuario.Id_Usuario;
+                Session["UsuarioNombre"] = usuario.Nombre;
+                Session["UsuarioEmail"] = usuario.Email;
+
+                TempData["MensajeExito"] = $"¡Bienvenido {usuario.Nombre}!";
+                
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Error al iniciar sesión: " + ex.Message);
+                return View();
+            }
+        }
+
+        // GET: Usuarios/Logout
+        public ActionResult Logout()
+        {
+            // Limpiar sesión
+            Session.Clear();
+            Session.Abandon();
+            
+            TempData["Mensaje"] = "Has cerrado sesión correctamente";
+            return RedirectToAction("Index", "Home");
         }
 
         // Método auxiliar para generar código aleatorio
