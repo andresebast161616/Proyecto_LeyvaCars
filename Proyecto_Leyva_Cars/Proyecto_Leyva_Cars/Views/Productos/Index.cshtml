@@ -1,0 +1,336 @@
+﻿@{
+    ViewBag.Title = "Catálogo de Autopartes";
+    var productos = ViewBag.Productos as List<Proyecto_Leyva_Cars.Models.Productos> ?? new List<Proyecto_Leyva_Cars.Models.Productos>();
+    var categorias = ViewBag.Categorias as List<string> ?? new List<string>();
+    var marcas = ViewBag.Marcas as List<string> ?? new List<string>();
+}
+
+<!-- SOLO EL CONTENIDO ESPECÍFICO DE LA PÁGINA -->
+<div class="catalog-page">
+    <div class="catalog-container">
+        <!-- Header del catálogo -->
+        <div class="catalog-header mb-6">
+            <h1 class="catalog-main-title">Catálogo de Autopartes</h1>
+            <p class="catalog-subtitle">Encuentra las mejores autopartes para tu vehículo</p>
+        </div>
+
+        <div class="catalog-main-flex">
+            <!-- Sidebar de filtros -->
+            <div class="catalog-sidebar">
+                <div class="filters-sidebar">
+                    <h3 class="filters-title">
+                        <i class="fas fa-filter"></i>
+                        Filtrar productos
+                    </h3>
+                    
+                    <form method="GET" action="@Url.Action("Index", "Productos")">
+                        <!-- Buscador -->
+                        <div class="filter-group">
+                            <label class="filter-label">
+                                <i class="fas fa-search"></i>
+                                Buscar producto
+                            </label>
+                            <input type="text" name="busqueda" class="form-control" 
+                                   placeholder="¿Qué autopieza necesitas?" 
+                                   value="@ViewBag.BusquedaActual" />
+                        </div>
+                        
+                        <!-- Categorías -->
+                        <div class="filter-group">
+                            <label class="filter-label">
+                                <i class="fas fa-tags"></i>
+                                Categoría
+                            </label>
+                            <select name="categoria" class="form-select">
+                                <option value="">Todas las categorías</option>
+                                @foreach(var categoria in categorias)
+                                {
+                                    <option value="@categoria" @(ViewBag.CategoriaActual == categoria ? "selected" : "")>
+                                        @categoria
+                                    </option>
+                                }
+                            </select>
+                        </div>
+                        
+                        <!-- Rango de precios -->
+                        <div class="filter-group">
+                            <label class="filter-label">
+                                <i class="fas fa-dollar-sign"></i>
+                                Rango de precio
+                            </label>
+                            <div class="price-range">
+                                <input type="number" name="precioMin" class="form-control" 
+                                       placeholder="Mín" value="@ViewBag.PrecioMinActual" />
+                                <span class="range-separator">-</span>
+                                <input type="number" name="precioMax" class="form-control" 
+                                       placeholder="Máx" value="@ViewBag.PrecioMaxActual" />
+                            </div>
+                        </div>
+                        
+                        <!-- Orden -->
+                        <div class="filter-group">
+                            <label class="filter-label">
+                                <i class="fas fa-sort"></i>
+                                Ordenar por
+                            </label>
+                            <select name="orden" class="form-select">
+                                <option value="" @(ViewBag.OrdenActual == "" ? "selected" : "")>Relevancia</option>
+                                <option value="precio_asc" @(ViewBag.OrdenActual == "precio_asc" ? "selected" : "")>Precio: Menor a mayor</option>
+                                <option value="precio_desc" @(ViewBag.OrdenActual == "precio_desc" ? "selected" : "")>Precio: Mayor a menor</option>
+                                <option value="nombre_asc" @(ViewBag.OrdenActual == "nombre_asc" ? "selected" : "")>Nombre: A-Z</option>
+                                <option value="mas_recientes" @(ViewBag.OrdenActual == "mas_recientes" ? "selected" : "")>Más recientes</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Botones -->
+                        <div class="flex flex-col gap-2">
+                            <button type="submit" class="btn-filter">
+                                <i class="fas fa-search"></i>
+                                Aplicar filtros
+                            </button>
+                            <a href="@Url.Action("Index", "Productos")" class="btn-clear">
+                                <i class="fas fa-times"></i>
+                                Limpiar filtros
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Sección de productos -->
+            <div class="catalog-content">
+                <div class="products-section">
+                    <!-- Header de resultados -->
+                    <div class="products-header-bar">
+                        <div class="results-info">
+                            Mostrando @productos.Count de @ViewBag.TotalProductos productos
+                        </div>
+                    </div>
+                    
+                    @if (productos.Any())
+                    {
+                        <!-- Grid de productos -->
+                        <div class="products-grid">
+                            @foreach(var producto in productos)
+                            {
+                                <div class="product-card">
+                                    <!-- Badge de estado -->
+                                    @if (producto.Stock < 5 && producto.Stock > 0)
+                                    {
+                                        <div class="product-badge">
+                                            <span class="badge bg-yellow-500 text-white">¡Últimas unidades!</span>
+                                        </div>
+                                    }
+                                    else if (producto.Stock <= 0)
+                                    {
+                                        <div class="product-badge">
+                                            <span class="badge bg-red-500 text-white">Agotado</span>
+                                        </div>
+                                    }
+                                    
+                                    <!-- Imagen del producto -->
+                                    <div class="product-image-container">
+                                        @if (!string.IsNullOrEmpty(producto.UrlImagen))
+                                        {
+                                            <img src="@producto.UrlImagen" alt="@producto.Nombre" class="product-image" />
+                                        }
+                                        else
+                                        {
+                                            <div class="product-image bg-gray-200 flex items-center justify-center">
+                                                <i class="fas fa-car text-gray-400 text-4xl"></i>
+                                            </div>
+                                        }
+                                        
+                                        <!-- Overlay con acciones -->
+                                        <div class="product-overlay">
+                                            <div class="quick-actions">
+                                                <a href="@Url.Action("Detalle", "Productos", new { id = producto.Id })" class="quick-btn">
+                                                    <i class="fas fa-eye"></i>
+                                                    Ver detalles
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Contenido del producto -->
+                                    <div class="product-content">
+                                        <h3 class="product-title">@producto.Nombre</h3>
+                        <p class="product-category">@producto.Categoria</p>
+                        <p class="product-brand">@producto.Marca</p>                                        <div class="product-price">
+                                            S/ @(producto.Precio?.ToString("F2") ?? "0.00")
+                                        </div>
+                                        
+                                        <div class="product-stock">
+                                            @if (producto.Stock > 0)
+                                            {
+                                                <span class="stock-available">
+                                                    <i class="fas fa-check-circle"></i>
+                                                    Stock: @producto.Stock
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span class="stock-unavailable">
+                                                    <i class="fas fa-times-circle"></i>
+                                                    Sin stock
+                                                </span>
+                                            }
+                                        </div>
+                                        
+                                        <!-- Botón agregar al carrito -->
+                                        @if (producto.Stock > 0)
+                                        {
+                                            <button class="btn-add-to-cart" onclick="agregarAlCarrito(@producto.Id)">
+                                                <i class="fas fa-shopping-cart"></i>
+                                                Añadir al carrito
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn-add-to-cart" disabled>
+                                                <i class="fas fa-times-circle"></i>
+                                                Agotado
+                                            </button>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <!-- Sin productos -->
+                        <div class="text-center py-12">
+                            <i class="fas fa-search text-6xl text-gray-300 mb-4"></i>
+                            <h3 class="text-xl font-semibold text-gray-600 mb-2">No se encontraron productos</h3>
+                            <p class="text-gray-500 mb-4">Intenta con otros criterios de búsqueda</p>
+                            <a href="@Url.Action("Index", "Productos")" class="btn-filter inline-block">
+                                Ver todos los productos
+                            </a>
+                        </div>
+                    }
+                    
+                    <!-- Paginación (FUERA del if de productos) -->
+                    @if (ViewBag.TotalPaginas > 1)
+                    {
+                        <div class="pagination-modern">
+                            <nav>
+                                <ul class="pagination">
+                                    @if (ViewBag.PaginaActual > 1)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" href="@Url.Action("Index", new { 
+                                                busqueda = ViewBag.BusquedaActual,
+                                                categoria = ViewBag.CategoriaActual,
+                                                precioMin = ViewBag.PrecioMinActual,
+                                                precioMax = ViewBag.PrecioMaxActual,
+                                                orden = ViewBag.OrdenActual,
+                                                pagina = ViewBag.PaginaActual - 1 
+                                            })">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                    
+                                    @for (int i = 1; i <= ViewBag.TotalPaginas; i++)
+                                    {
+                                        <li class="page-item @(i == ViewBag.PaginaActual ? "active" : "")">
+                                            <a class="page-link" href="@Url.Action("Index", new { 
+                                                busqueda = ViewBag.BusquedaActual,
+                                                categoria = ViewBag.CategoriaActual,
+                                                precioMin = ViewBag.PrecioMinActual,
+                                                precioMax = ViewBag.PrecioMaxActual,
+                                                orden = ViewBag.OrdenActual,
+                                                pagina = i 
+                                            })">@i</a>
+                                        </li>
+                                    }
+                                    
+                                    @if (ViewBag.PaginaActual < ViewBag.TotalPaginas)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" href="@Url.Action("Index", new { 
+                                                busqueda = ViewBag.BusquedaActual,
+                                                categoria = ViewBag.CategoriaActual,
+                                                precioMin = ViewBag.PrecioMinActual,
+                                                precioMax = ViewBag.PrecioMaxActual,
+                                                orden = ViewBag.OrdenActual,
+                                                pagina = ViewBag.PaginaActual + 1 
+                                            })">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Agregar CSS específico para esta vista -->
+@section Styles {
+    <link rel="stylesheet" href="~/Assets/css/catalogo-productos.css" />
+}
+
+<!-- JavaScript -->
+@section Scripts {
+    <script>
+        function agregarAlCarrito(productoId) {
+            // Verificar si hay usuario logueado
+            @if (Session["UsuarioId"] != null)
+            {
+                <text>
+                fetch('/Carrito/Agregar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `productoId=${productoId}&cantidad=1`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Producto agregado al carrito');
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al agregar al carrito');
+                });
+                </text>
+            }
+            else
+            {
+                <text>
+                alert('Debes iniciar sesión para agregar productos al carrito');
+                window.location.href = '@Url.Action("Login", "Usuarios")';
+                </text>
+            }
+        }
+        
+        function agregarAComparar(productoId) {
+            // Lógica para comparación de productos
+            let productosComparar = JSON.parse(localStorage.getItem('productosComparar') || '[]');
+            
+            if (productosComparar.includes(productoId)) {
+                alert('Este producto ya está en tu lista de comparación');
+                return;
+            }
+            
+            if (productosComparar.length >= 2) {
+                alert('Solo puedes comparar hasta 2 productos a la vez');
+                return;
+            }
+            
+            productosComparar.push(productoId);
+            localStorage.setItem('productosComparar', JSON.stringify(productosComparar));
+            alert('Producto agregado a la comparación');
+        }
+    </script>
+}

@@ -1,5 +1,12 @@
 ﻿@{
     ViewBag.Title = "Chat IA - Identificador de Piezas";
+    // Verificar si el usuario está logueado
+    if (Session["UsuarioId"] == null || Session["UsuarioNombre"] == null)
+    {
+        // Si no hay sesión, redirigir al login
+        Response.Redirect("~/Usuarios/Login");
+        return;
+    }
 }
 
 @section Styles {

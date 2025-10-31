@@ -246,6 +246,153 @@ namespace Proyecto_Leyva_Cars.Services
                 return new List<string>();
             }
         }
+
+        // NUEVOS MÉTODOS PARA EL CATÁLOGO
+        
+        public List<Productos> ObtenerProductosFiltrados(string busqueda = "", string categoria = "", 
+            decimal? precioMin = null, decimal? precioMax = null, string orden = "", 
+            int pagina = 1, int productosPorPagina = 6)
+        {
+            try
+            {
+                var query = _context.Productos.Where(p => p.Activo == true);
+                
+                // Filtro por búsqueda
+                if (!string.IsNullOrEmpty(busqueda))
+                {
+                    query = query.Where(p => p.Nombre.Contains(busqueda) || 
+                                           p.Marca.Contains(busqueda) ||
+                                           p.Categoria.Contains(busqueda) ||
+                                           p.Descripcion.Contains(busqueda));
+                }
+                
+                // Filtro por categoría
+                if (!string.IsNullOrEmpty(categoria))
+                {
+                    query = query.Where(p => p.Categoria == categoria);
+                }
+                
+                // Filtro por precio mínimo
+                if (precioMin.HasValue)
+                {
+                    query = query.Where(p => p.Precio >= precioMin.Value);
+                }
+                
+                // Filtro por precio máximo
+                if (precioMax.HasValue)
+                {
+                    query = query.Where(p => p.Precio <= precioMax.Value);
+                }
+                
+                // Ordenamiento
+                switch (orden?.ToLower())
+                {
+                    case "precio_asc":
+                        query = query.OrderBy(p => p.Precio);
+                        break;
+                    case "precio_desc":
+                        query = query.OrderByDescending(p => p.Precio);
+                        break;
+                    case "nombre_asc":
+                        query = query.OrderBy(p => p.Nombre);
+                        break;
+                    case "nombre_desc":
+                        query = query.OrderByDescending(p => p.Nombre);
+                        break;
+                    case "mas_recientes":
+                        query = query.OrderByDescending(p => p.FechaCreacion ?? DateTime.MinValue);
+                        break;
+                    default:
+                        query = query.OrderByDescending(p => p.FechaCreacion ?? DateTime.MinValue)
+                                   .ThenBy(p => p.Nombre);
+                        break;
+                }
+                
+                // Paginación
+                var productos = query
+                    .Skip((pagina - 1) * productosPorPagina)
+                    .Take(productosPorPagina)
+                    .ToList();
+                
+                return productos;
+            }
+            catch (Exception)
+            {
+                return new List<Productos>();
+            }
+        }
+        
+        public int ContarProductosFiltrados(string busqueda = "", string categoria = "", 
+            decimal? precioMin = null, decimal? precioMax = null)
+        {
+            try
+            {
+                var query = _context.Productos.Where(p => p.Activo == true);
+                
+                // Aplicar los mismos filtros
+                if (!string.IsNullOrEmpty(busqueda))
+                {
+                    query = query.Where(p => p.Nombre.Contains(busqueda) || 
+                                           p.Marca.Contains(busqueda) ||
+                                           p.Categoria.Contains(busqueda) ||
+                                           p.Descripcion.Contains(busqueda));
+                }
+                
+                if (!string.IsNullOrEmpty(categoria))
+                {
+                    query = query.Where(p => p.Categoria == categoria);
+                }
+                
+                if (precioMin.HasValue)
+                {
+                    query = query.Where(p => p.Precio >= precioMin.Value);
+                }
+                
+                if (precioMax.HasValue)
+                {
+                    query = query.Where(p => p.Precio <= precioMax.Value);
+                }
+                
+                return query.Count();
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+        
+        public Productos ObtenerProductoPorId(int id)
+        {
+            try
+            {
+                return _context.Productos
+                    .Where(p => p.Id == id && p.Activo == true)
+                    .FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        
+        public List<Productos> ObtenerProductosRelacionados(int productoId, string categoria, int cantidad = 6)
+        {
+            try
+            {
+                return _context.Productos
+                    .Where(p => p.Id != productoId && 
+                              p.Categoria == categoria && 
+                              p.Activo == true && 
+                              p.Stock > 0)
+                    .OrderByDescending(p => p.FechaCreacion ?? DateTime.MinValue)
+                    .Take(cantidad)
+                    .ToList();
+            }
+            catch (Exception)
+            {
+                return new List<Productos>();
+            }
+        }
     }
 
     internal class ProductoConPuntuacion

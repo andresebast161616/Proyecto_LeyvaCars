@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|d:\\disco d completo\\upt\\ciclo 9\\web 2\\unidad 2\\leyvacar\\proyecto_leyvacars\\proyecto_leyva_cars\\proyecto_leyva_cars\\views\\productos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\productos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|d:\\disco d completo\\upt\\ciclo 9\\web 2\\unidad 2\\leyvacar\\proyecto_leyvacars\\proyecto_leyva_cars\\proyecto_leyva_cars\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\controllers\\productoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\assets\\css\\catalogo-productos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\assets\\css\\catalogo-productos.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\usuarios\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\usuarios\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\usuarios\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\usuarios\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|solutionrelative:proyecto_leyva_cars\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3F6EE9DB-CBF6-4892-8CDA-4C231C79C0E4}|Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars.csproj|D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\proyecto_leyva_cars\\views\\chat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -67,6 +79,43 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Productos\\Index.cshtml",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Productos\\Index.cshtml",
+              "ToolTip": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Productos\\Index.cshtml",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Productos\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-31T18:59:26.799Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "catalogo-productos.css",
+              "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Assets\\css\\catalogo-productos.css",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Assets\\css\\catalogo-productos.css",
+              "ToolTip": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Assets\\css\\catalogo-productos.css",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Assets\\css\\catalogo-productos.css",
+              "ViewState": "AgIAAAcBAAAAAAAAAAAwwGYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-10-31T18:58:43.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductosController.cs",
+              "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Controllers\\ProductosController.cs",
+              "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Controllers\\ProductosController.cs",
+              "ToolTip": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Controllers\\ProductosController.cs",
+              "RelativeToolTip": "Proyecto_Leyva_Cars\\Controllers\\ProductosController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABQAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-31T18:54:39.807Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Shared\\_Layout.cshtml",
@@ -74,12 +123,11 @@
               "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAADgBAAAAAAAAAAAAAGABAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-31T17:31:20.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-31T17:31:20.862Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\_ViewStart.cshtml",
@@ -91,19 +139,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\Login.cshtml",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Usuarios\\Login.cshtml",
               "ToolTip": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Usuarios\\Login.cshtml",
               "RelativeToolTip": "Proyecto_Leyva_Cars\\Views\\Usuarios\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-31T17:19:25.875Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Web.config",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Web.config",
@@ -116,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "Productos.cs",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Models\\Productos.cs",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Models\\Productos.cs",
@@ -128,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Controllers\\HomeController.cs",
@@ -140,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "ServicioGemini.cs",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Services\\ServicioGemini.cs",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Services\\ServicioGemini.cs",
@@ -152,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Home\\Index.cshtml",
@@ -164,7 +212,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Views\\Chat\\Index.cshtml",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Views\\Chat\\Index.cshtml",
@@ -176,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "chat-styles.css",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Assets\\css\\chat-styles.css",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Assets\\css\\chat-styles.css",
@@ -188,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "ServicioBusquedaProductos.cs",
               "DocumentMoniker": "D:\\DISCO D COMPLETO\\UPT\\ciclo 9\\web 2\\unidad 2\\Leyvacar\\Proyecto_LeyvaCars\\Proyecto_Leyva_Cars\\Proyecto_Leyva_Cars\\Services\\ServicioBusquedaProductos.cs",
               "RelativeDocumentMoniker": "Proyecto_Leyva_Cars\\Services\\ServicioBusquedaProductos.cs",
