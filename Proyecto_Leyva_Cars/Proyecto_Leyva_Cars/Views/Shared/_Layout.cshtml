@@ -166,6 +166,14 @@
                 margin-right: 5px;
             }
 
+        .user-welcome {
+            color: white;
+            font-weight: 500;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+
         /* --- Responsive --- */
         @@media (max-width: 991px) {
             .navbar .container-fluid {
@@ -239,12 +247,27 @@
                 </div>
 
                 <div class="auth-buttons">
-                    <a href="#" class="auth-btn login">
-                        <i class="fas fa-sign-in-alt"></i> INICIAR SESIÓN
-                    </a>
-                    <a href="@Url.Action("Create", "Usuarios")" class="auth-btn register">
-                        <i class="fas fa-user-plus"></i> CREAR CUENTA
-                    </a>
+                    @if (Session["UsuarioId"] != null)
+                    {
+                        <!-- Usuario logueado -->
+                        <span class="user-welcome" style="color: white; font-weight: 500; margin-right: 10px;">
+                            <i class="fas fa-user-circle" style="margin-right: 5px;"></i>
+                            Hola, @Session["UsuarioNombre"]
+                        </span>
+                        <a href="@Url.Action("Logout", "Usuarios")" class="auth-btn">
+                            <i class="fas fa-sign-out-alt"></i> CERRAR SESIÓN
+                        </a>
+                    }
+                    else
+                    {
+                        <!-- Usuario NO logueado -->
+                        <a href="@Url.Action("Login", "Usuarios")" class="auth-btn login">
+                            <i class="fas fa-sign-in-alt"></i> INICIAR SESIÓN
+                        </a>
+                        <a href="@Url.Action("Create", "Usuarios")" class="auth-btn register">
+                            <i class="fas fa-user-plus"></i> CREAR CUENTA
+                        </a>
+                    }
                 </div>
             </div>
         </div>
