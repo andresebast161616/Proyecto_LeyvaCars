@@ -17,26 +17,32 @@ namespace Proyecto_Leyva_Cars.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Productos()
         {
+            this.Carrito = new HashSet<Carrito>();
             this.Consultas = new HashSet<Consultas>();
             this.Pedidos = new HashSet<Pedidos>();
+            this.Producto_Imagenes = new HashSet<Producto_Imagenes>();
         }
     
-        public int Id { get; set; }
+        public int Id_Producto { get; set; }
         public string Codigo { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Categoria { get; set; }
-        public Nullable<decimal> Precio { get; set; }
+        public decimal Precio { get; set; }
         public Nullable<int> Stock { get; set; }
-        public string UrlImagen { get; set; }
         public string Marca { get; set; }
+        public string Modelo { get; set; }
         public string ModelosCompatibles { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         public Nullable<bool> Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Carrito> Carrito { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Consultas> Consultas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedidos> Pedidos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Producto_Imagenes> Producto_Imagenes { get; set; }
     }
 }

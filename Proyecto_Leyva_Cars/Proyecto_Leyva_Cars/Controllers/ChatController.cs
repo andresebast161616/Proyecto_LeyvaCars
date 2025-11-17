@@ -90,7 +90,12 @@ namespace Proyecto_Leyva_Cars.Controllers
                 System.Diagnostics.Debug.WriteLine($"Nombres detectados: [{string.Join(", ", respuestaIA.NombresDetectados)}]");
                 System.Diagnostics.Debug.WriteLine("============================");                // Buscar productos en BD usando los nombres detectados
                 var productosEncontrados = new List<Productos>();
-                if (respuestaIA.NombresDetectados?.Any() == true)
+                
+                // Solo buscar si no hay errores de API y tenemos nombres válidos
+                bool esErrorAPI = respuestaIA.DescripcionNatural.Contains("Servicio temporalmente saturado") ||
+                                 respuestaIA.NombresDetectados.Any(n => n.Contains("servicio no disponible") || n.Contains("nombres no disponibles"));
+                
+                if (!esErrorAPI && respuestaIA.NombresDetectados?.Any() == true)
                 {
                     productosEncontrados = _servicioProductos.BuscarPorNombres(
                         respuestaIA.NombresDetectados,
@@ -99,20 +104,44 @@ namespace Proyecto_Leyva_Cars.Controllers
                 }
 
                 // Registrar consulta en BD
+                var usuarioId = Convert.ToInt32(Session["UsuarioId"]);
+                
+                // Parsear año de manera segura
+                int? anioVehiculoParsed = null;
+                if (!string.IsNullOrEmpty(anioVehiculo) && int.TryParse(anioVehiculo, out int anioInt))
+                {
+                    anioVehiculoParsed = anioInt;
+                }
+                
+                // Truncar cadenas si son muy largas para evitar errores de BD
+                var nombresDetectados = string.Join(",", respuestaIA.NombresDetectados ?? new List<string>());
+                if (nombresDetectados.Length > 500) nombresDetectados = nombresDetectados.Substring(0, 500);
+                
                 var consulta = new Consultas
                 {
-                    MarcaVehiculo = marcaVehiculo,
-                    ModeloVehiculo = modeloVehiculo,
-                    AnioVehiculo = int.Parse(anioVehiculo ?? "0"),
+                    Id_Usuario = usuarioId,
+                    MarcaVehiculo = !string.IsNullOrEmpty(marcaVehiculo) && marcaVehiculo.Length > 50 ? marcaVehiculo.Substring(0, 50) : marcaVehiculo,
+                    ModeloVehiculo = !string.IsNullOrEmpty(modeloVehiculo) && modeloVehiculo.Length > 50 ? modeloVehiculo.Substring(0, 50) : modeloVehiculo,
+                    AnioVehiculo = anioVehiculoParsed,
                     RutaImagen = rutaImagen,
-                    NombresDetectadosIA = string.Join(",", respuestaIA.NombresDetectados ?? new List<string>()),
+                    NombresDetectadosIA = nombresDetectados,
                     TipoConsulta = productosEncontrados.Any() ? "EncontradoEnBD" : "BusquedaManual",
                     Estado = "Pendiente",
                     FechaConsulta = DateTime.Now
                 };
 
-                db.Consultas.Add(consulta);
-                db.SaveChanges();
+                try
+                {
+                    db.Consultas.Add(consulta);
+                    db.SaveChanges();
+                }
+                catch (Exception dbEx)
+                {
+                    // Debug detallado del error de base de datos
+                    var errorDetail = dbEx.InnerException?.Message ?? dbEx.Message;
+                    System.Diagnostics.Debug.WriteLine($"ERROR BD: {errorDetail}");
+                    return Json(new { success = false, error = $"Error BD: {errorDetail}" });
+                }
 
                 // TEMPORAL: Obtener respuesta RAW de la misma llamada (esto es redundante pero para debug)
                 var promptSimple = "Identifica esta pieza automotriz";
@@ -121,19 +150,19 @@ namespace Proyecto_Leyva_Cars.Controllers
                 return Json(new
                 {
                     success = true,
-                    consultaId = consulta.Id,
+                    consultaId = consulta.Id_Consulta,
                     descripcionIA = respuestaIA.DescripcionNatural,    // NUEVO: Descripción natural
                     nombresDetectados = respuestaIA.NombresDetectados, // NUEVO: Para debug
                     respuestaRaw = respuestaRaw,                       // TEMPORAL: Para debug
                     productos = productosEncontrados.Select(p => new
                     {
-                        id = p.Id,
+                        id = p.Id_Producto,
                         codigo = p.Codigo,
                         nombre = p.Nombre,
                         precio = p.Precio,
                         stock = p.Stock,
                         marca = p.Marca,
-                        imagen = p.UrlImagen,
+                        imagen = p.Producto_Imagenes.FirstOrDefault()?.Imagen,
                         compatibilidad = p.ModelosCompatibles
                     }).ToList(),
                     tieneResultados = productosEncontrados.Any()
@@ -150,8 +179,8 @@ namespace Proyecto_Leyva_Cars.Controllers
         {
             try
             {
-                var consulta = db.Consultas.Find(consultaId);
-                var producto = db.Productos.Find(productoId);
+                var consulta = db.Consultas.FirstOrDefault(c => c.Id_Consulta == consultaId);
+                var producto = db.Productos.FirstOrDefault(p => p.Id_Producto == productoId);
 
                 if (consulta == null || producto == null)
                     return Json(new { success = false, error = "Datos no encontrados" });
@@ -173,7 +202,7 @@ namespace Proyecto_Leyva_Cars.Controllers
                 var urlWhatsApp = $"https://wa.me/{NumeroWhatsApp}?text={Uri.EscapeDataString(mensaje)}";
 
                 // Actualizar consulta
-                consulta.ProductoId = productoId;
+                consulta.Id_Producto = productoId;
                 consulta.MensajeWhatsApp = mensaje;
                 consulta.TipoConsulta = "EncontradoEnBD";
                 db.SaveChanges();

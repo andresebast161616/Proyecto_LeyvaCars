@@ -4,16 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="64a07d63978f4624a91ffa1f6a67afdb" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="LeyvaCarModel.CodigoVerificacion" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeyvaCarModel.Consultas" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeyvaCarModel.Pedidos" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeyvaCarModel.Productos" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LeyvaCarModel.Usuarios" Width="1.5" PointX="5.75" PointY="6" IsExpanded="true" />
-        <AssociationConnector Association="LeyvaCarModel.FK__CodigoVer__Id_Us__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="LeyvaCarModel.FK__Consultas__Produ__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="LeyvaCarModel.FK__Pedidos__Consult__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="LeyvaCarModel.FK__Pedidos__Product__3C69FB99" ManuallyRouted="false" />
+      <Diagram DiagramId="3a188cc7289a4c16bbdaa78ee979eac0" Name="Diagram1">
+        <EntityTypeShape EntityType="LeyvaCarModel.Carrito" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.CodigoVerificacion" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Consultas" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Pedidos" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Producto_Imagenes" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Productos" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeyvaCarModel.Usuarios" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Carrito__Product__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Carrito__Usuario__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__CodigoVer__Id_Us__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Consultas__Id_Pr__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Consultas__Id_Us__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Consultas__Id_Ve__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Pedidos__Id_Cons__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Pedidos__Id_Prod__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Pedidos__Id_Usua__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="LeyvaCarModel.FK__Producto___Id_Pr__3A81B327" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

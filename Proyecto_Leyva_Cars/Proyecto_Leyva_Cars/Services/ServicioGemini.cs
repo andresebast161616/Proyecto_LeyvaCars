@@ -18,8 +18,8 @@ namespace Proyecto_Leyva_Cars.Services
         public ServicioGemini()
         {
             _httpClient = new HttpClient();
-            _apiKey = ConfigurationManager.AppSettings["GeminiApiKey"] ?? "AIzaSyCPwIAQ1Xgeaf1AIuQZ2b9DBjO-Piaynog";
-            _modelo = ConfigurationManager.AppSettings["GeminiModel"] ?? "gemini-2.0-flash-exp";
+            _apiKey = ConfigurationManager.AppSettings["GeminiApiKey"] ?? "AIzaSyA1oBAdM38ov1ZQHZgmJxf5hOWMEP1u8Yc";
+            _modelo = ConfigurationManager.AppSettings["GeminiModel"] ?? "gemini-2.0-flash";
         }
 
         public async Task<string> ProcesarImagenAsync(string mensaje, byte[] imageBytes = null, string mimeType = null)
@@ -64,8 +64,14 @@ namespace Proyecto_Leyva_Cars.Services
                 var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
                 var response = await _httpClient.PostAsync(url, content);
+                
+                // Manejo específico del error 429 (Too Many Requests)
+                if ((int)response.StatusCode == 429)
+                {
+                    return "🚫 Límite de consultas excedido. Por favor espera un momento antes de intentar nuevamente.";
+                }
+                
                 response.EnsureSuccessStatusCode();
-
                 var responseContent = await response.Content.ReadAsStringAsync();
                 
                 // DEBUG: Ver respuesta completa de Gemini
@@ -115,6 +121,14 @@ Responde de forma concisa y técnica, sin saludos ni introducciones:";
 
                 System.Diagnostics.Debug.WriteLine("=== PRIMERA CONSULTA: DESCRIPCIÓN ===");
                 var descripcion = await ProcesarImagenAsync(promptDescripcion, imageBytes, mimeType);
+                
+                // Verificar si es error de límite de API
+                if (descripcion.Contains("Límite de consultas excedido"))
+                {
+                    resultado.DescripcionNatural = "⏱️ Servicio temporalmente saturado. Intenta nuevamente en unos minutos.";
+                    resultado.NombresDetectados = new List<string> { "servicio no disponible" };
+                    return resultado;
+                }
                 
                 if (!string.IsNullOrEmpty(descripcion) && descripcion != "No se recibió respuesta válida de la API")
                 {
@@ -166,6 +180,17 @@ RESPONDE SOLO LA LISTA DE NOMBRES SEPARADOS POR COMAS, SIN TEXTO ADICIONAL:";
 
                 System.Diagnostics.Debug.WriteLine("=== SEGUNDA CONSULTA: NOMBRES ===");
                 var respuestaNombres = await ProcesarImagenAsync(promptNombres, imageBytes, mimeType);
+                
+                // Verificar si es error de límite de API
+                if (respuestaNombres.Contains("Límite de consultas excedido"))
+                {
+                    // Si ya tenemos descripción, mantenerla pero indicar que nombres no están disponibles
+                    if (!resultado.DescripcionNatural.Contains("Servicio temporalmente saturado"))
+                    {
+                        resultado.NombresDetectados = new List<string> { "nombres no disponibles por límite API" };
+                    }
+                    return resultado;
+                }
                 
                 if (!string.IsNullOrEmpty(respuestaNombres) && respuestaNombres != "No se recibió respuesta válida de la API")
                 {

@@ -108,9 +108,10 @@
                 {
                     <div class="producto-card">
                         <div class="producto-image">
-                            @if (!string.IsNullOrEmpty(producto.UrlImagen))
+                            @if (producto.Producto_Imagenes != null && producto.Producto_Imagenes.Any())
                             {
-                                <img src="@producto.UrlImagen" alt="@producto.Nombre" />
+                                var primeraImagen = producto.Producto_Imagenes.FirstOrDefault();
+                                <img src="@primeraImagen.Imagen" alt="@(!string.IsNullOrEmpty(primeraImagen.Alt_Text) ? primeraImagen.Alt_Text : producto.Nombre)" />
                             }
                             else
                             {
@@ -124,14 +125,7 @@
                             <p class="producto-categoria">@producto.Categoria</p>
                             <p class="producto-marca">@producto.Marca</p>
                             <div class="producto-precio">
-                                @if (producto.Precio.HasValue)
-                                {
-                                    <span class="precio">S/ @producto.Precio.Value.ToString("F2")</span>
-                                }
-                                else
-                                {
-                                    <span class="precio">Consultar precio</span>
-                                }
+                                <span class="precio">S/ @producto.Precio.ToString("F2")</span>
                             </div>
                             <div class="producto-stock">
                                 @if (producto.Stock.HasValue && producto.Stock > 0)

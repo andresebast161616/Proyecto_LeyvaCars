@@ -124,8 +124,6 @@
     <Content Include="Assets\js\home.js" />
     <Content Include="Assets\js\jquery-3.7.1.min.js" />
     <Content Include="Content\Site.css" />
-    <Content Include="uploads\consultas\" />
-    <Content Include="Global.asax" />
     <Content Include="Models\ModeloSistema.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloSistema.edmx</DependentUpon>
@@ -134,8 +132,10 @@
     <Content Include="Models\ModeloSistema.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModeloSistema.edmx</DependentUpon>
-      <LastGenOutput>ModeloSistema1.cs</LastGenOutput>
+      <LastGenOutput>ModeloSistema.cs</LastGenOutput>
     </Content>
+    <Content Include="uploads\consultas\" />
+    <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +146,9 @@
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Carrito.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CodigoVerificacion.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
@@ -158,21 +161,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloSistema.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModeloSistema.cs" />
+    <Compile Include="Models\ModeloSistema.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModeloSistema.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModeloSistema.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModeloSistema1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloSistema.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Pedidos.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Productos.cs">
+      <DependentUpon>ModeloSistema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Producto_Imagenes.cs">
       <DependentUpon>ModeloSistema.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuarios.cs">

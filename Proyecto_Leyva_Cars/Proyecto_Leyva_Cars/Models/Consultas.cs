@@ -20,23 +20,25 @@ namespace Proyecto_Leyva_Cars.Models
             this.Pedidos = new HashSet<Pedidos>();
         }
     
-        public int Id { get; set; }
-        public string NombreCliente { get; set; }
-        public string TelefonoCliente { get; set; }
+        public int Id_Consulta { get; set; }
+        public int Id_Usuario { get; set; }
         public string MarcaVehiculo { get; set; }
         public string ModeloVehiculo { get; set; }
         public Nullable<int> AnioVehiculo { get; set; }
         public string RutaImagen { get; set; }
         public string NombresDetectadosIA { get; set; }
-        public Nullable<int> ProductoId { get; set; }
+        public Nullable<int> Id_Producto { get; set; }
         public string TipoConsulta { get; set; }
         public string MensajeWhatsApp { get; set; }
         public string Estado { get; set; }
         public string RespuestaVendedor { get; set; }
+        public Nullable<int> Id_Vendedor { get; set; }
         public Nullable<System.DateTime> FechaConsulta { get; set; }
         public Nullable<System.DateTime> FechaRespuesta { get; set; }
     
         public virtual Productos Productos { get; set; }
+        public virtual Usuarios Usuarios { get; set; }
+        public virtual Usuarios Usuarios1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pedidos> Pedidos { get; set; }
     }

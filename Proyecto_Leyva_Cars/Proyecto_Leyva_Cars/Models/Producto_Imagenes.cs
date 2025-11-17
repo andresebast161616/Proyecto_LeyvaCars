@@ -12,21 +12,15 @@ namespace Proyecto_Leyva_Cars.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Pedidos
+    public partial class Producto_Imagenes
     {
-        public int Id_Pedido { get; set; }
-        public int Id_Consulta { get; set; }
-        public int Id_Usuario { get; set; }
+        public int Id_Imagen { get; set; }
         public int Id_Producto { get; set; }
-        public Nullable<int> Cantidad { get; set; }
-        public decimal PrecioAcordado { get; set; }
-        public string Estado { get; set; }
-        public string Notas { get; set; }
+        public string Imagen { get; set; }
+        public int Orden { get; set; }
+        public string Alt_Text { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
-        public Nullable<System.DateTime> FechaActualizacion { get; set; }
     
-        public virtual Consultas Consultas { get; set; }
         public virtual Productos Productos { get; set; }
-        public virtual Usuarios Usuarios { get; set; }
     }
 }

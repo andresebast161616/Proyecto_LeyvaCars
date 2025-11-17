@@ -25,9 +25,11 @@ namespace Proyecto_Leyva_Cars.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Carrito> Carrito { get; set; }
         public virtual DbSet<CodigoVerificacion> CodigoVerificacion { get; set; }
         public virtual DbSet<Consultas> Consultas { get; set; }
         public virtual DbSet<Pedidos> Pedidos { get; set; }
+        public virtual DbSet<Producto_Imagenes> Producto_Imagenes { get; set; }
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     }

@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="LeyvaCarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Carrito">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario_Id" Type="int" Nullable="false" />
+    <Property Name="Producto_Id" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Fecha_Creacion" Type="datetime2" Precision="7" />
+  </EntityType>
   <EntityType Name="CodigoVerificacion">
     <Key>
       <PropertyRef Name="Id_Codigo" />
@@ -14,52 +24,63 @@
   </EntityType>
   <EntityType Name="Consultas">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="Id_Consulta" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="NombreCliente" Type="nvarchar" MaxLength="255" />
-    <Property Name="TelefonoCliente" Type="nvarchar" MaxLength="20" />
+    <Property Name="Id_Consulta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Usuario" Type="int" Nullable="false" />
     <Property Name="MarcaVehiculo" Type="nvarchar" MaxLength="100" />
     <Property Name="ModeloVehiculo" Type="nvarchar" MaxLength="100" />
     <Property Name="AnioVehiculo" Type="int" />
     <Property Name="RutaImagen" Type="nvarchar" MaxLength="500" />
     <Property Name="NombresDetectadosIA" Type="nvarchar(max)" />
-    <Property Name="ProductoId" Type="int" />
+    <Property Name="Id_Producto" Type="int" />
     <Property Name="TipoConsulta" Type="nvarchar" MaxLength="50" />
     <Property Name="MensajeWhatsApp" Type="nvarchar(max)" />
     <Property Name="Estado" Type="nvarchar" MaxLength="50" />
     <Property Name="RespuestaVendedor" Type="nvarchar(max)" />
+    <Property Name="Id_Vendedor" Type="int" />
     <Property Name="FechaConsulta" Type="datetime2" Precision="7" />
     <Property Name="FechaRespuesta" Type="datetime2" Precision="7" />
   </EntityType>
   <EntityType Name="Pedidos">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="Id_Pedido" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ConsultaId" Type="int" />
-    <Property Name="NombreCliente" Type="nvarchar" MaxLength="255" />
-    <Property Name="TelefonoCliente" Type="nvarchar" MaxLength="20" />
-    <Property Name="ProductoId" Type="int" />
+    <Property Name="Id_Pedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Consulta" Type="int" Nullable="false" />
+    <Property Name="Id_Usuario" Type="int" Nullable="false" />
+    <Property Name="Id_Producto" Type="int" Nullable="false" />
     <Property Name="Cantidad" Type="int" />
-    <Property Name="PrecioAcordado" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PrecioAcordado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Estado" Type="nvarchar" MaxLength="50" />
     <Property Name="Notas" Type="nvarchar(max)" />
+    <Property Name="FechaCreacion" Type="datetime2" Precision="7" />
+    <Property Name="FechaActualizacion" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Producto_Imagenes">
+    <Key>
+      <PropertyRef Name="Id_Imagen" />
+    </Key>
+    <Property Name="Id_Imagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Producto" Type="int" Nullable="false" />
+    <Property Name="Imagen" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Orden" Type="int" Nullable="false" />
+    <Property Name="Alt_Text" Type="nvarchar" MaxLength="255" />
     <Property Name="FechaCreacion" Type="datetime2" Precision="7" />
   </EntityType>
   <EntityType Name="Productos">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="Id_Producto" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Codigo" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" />
     <Property Name="Categoria" Type="nvarchar" MaxLength="100" />
-    <Property Name="Precio" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Precio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
     <Property Name="Stock" Type="int" />
-    <Property Name="UrlImagen" Type="nvarchar" MaxLength="500" />
     <Property Name="Marca" Type="nvarchar" MaxLength="100" />
+    <Property Name="Modelo" Type="varchar" MaxLength="50" />
     <Property Name="ModelosCompatibles" Type="nvarchar(max)" />
     <Property Name="FechaCreacion" Type="datetime2" Precision="7" />
     <Property Name="Activo" Type="bit" />
@@ -72,11 +93,39 @@
     <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Apellido" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
     <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Rol" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="FechaRegistro" Type="datetime2" Precision="7" />
     <Property Name="Activo" Type="bit" />
   </EntityType>
-  <Association Name="FK__CodigoVer__Id_Us__2B3F6F97">
+  <Association Name="FK__Carrito__Product__403A8C7D">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_Producto" />
+      </Principal>
+      <Dependent Role="Carrito">
+        <PropertyRef Name="Producto_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Carrito__Usuario__3F466844">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Carrito" Type="Self.Carrito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Carrito">
+        <PropertyRef Name="Usuario_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CodigoVer__Id_Us__2D27B809">
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
@@ -90,63 +139,139 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Consultas__Produ__35BCFE0A">
+  <Association Name="FK__Consultas__Id_Pr__46E78A0C">
     <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
     <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Productos">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="Id_Producto" />
       </Principal>
       <Dependent Role="Consultas">
-        <PropertyRef Name="ProductoId" />
+        <PropertyRef Name="Id_Producto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pedidos__Consult__3B75D760">
-    <End Role="Consultas" Type="Self.Consultas" Multiplicity="0..1" />
+  <Association Name="FK__Consultas__Id_Us__45F365D3">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Consultas">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Consultas__Id_Ve__47DBAE45">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Consultas">
+        <PropertyRef Name="Id_Vendedor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedidos__Id_Cons__4E88ABD4">
+    <End Role="Consultas" Type="Self.Consultas" Multiplicity="1" />
     <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Consultas">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="Id_Consulta" />
       </Principal>
       <Dependent Role="Pedidos">
-        <PropertyRef Name="ConsultaId" />
+        <PropertyRef Name="Id_Consulta" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pedidos__Product__3C69FB99">
-    <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+  <Association Name="FK__Pedidos__Id_Prod__5070F446">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
     <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Productos">
-        <PropertyRef Name="Id" />
+        <PropertyRef Name="Id_Producto" />
       </Principal>
       <Dependent Role="Pedidos">
-        <PropertyRef Name="ProductoId" />
+        <PropertyRef Name="Id_Producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pedidos__Id_Usua__4F7CD00D">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
+    <End Role="Pedidos" Type="Self.Pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_Usuario" />
+      </Principal>
+      <Dependent Role="Pedidos">
+        <PropertyRef Name="Id_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto___Id_Pr__3A81B327">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Producto_Imagenes" Type="Self.Producto_Imagenes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="Id_Producto" />
+      </Principal>
+      <Dependent Role="Producto_Imagenes">
+        <PropertyRef Name="Id_Producto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="LeyvaCarModelStoreContainer">
+    <EntitySet Name="Carrito" EntityType="Self.Carrito" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CodigoVerificacion" EntityType="Self.CodigoVerificacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Consultas" EntityType="Self.Consultas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pedidos" EntityType="Self.Pedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto_Imagenes" EntityType="Self.Producto_Imagenes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__CodigoVer__Id_Us__2B3F6F97" Association="Self.FK__CodigoVer__Id_Us__2B3F6F97">
+    <AssociationSet Name="FK__Carrito__Product__403A8C7D" Association="Self.FK__Carrito__Product__403A8C7D">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Carrito" EntitySet="Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Carrito__Usuario__3F466844" Association="Self.FK__Carrito__Usuario__3F466844">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Carrito" EntitySet="Carrito" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CodigoVer__Id_Us__2D27B809" Association="Self.FK__CodigoVer__Id_Us__2D27B809">
       <End Role="Usuarios" EntitySet="Usuarios" />
       <End Role="CodigoVerificacion" EntitySet="CodigoVerificacion" />
     </AssociationSet>
-    <AssociationSet Name="FK__Consultas__Produ__35BCFE0A" Association="Self.FK__Consultas__Produ__35BCFE0A">
+    <AssociationSet Name="FK__Consultas__Id_Pr__46E78A0C" Association="Self.FK__Consultas__Id_Pr__46E78A0C">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="Consultas" EntitySet="Consultas" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pedidos__Consult__3B75D760" Association="Self.FK__Pedidos__Consult__3B75D760">
+    <AssociationSet Name="FK__Consultas__Id_Us__45F365D3" Association="Self.FK__Consultas__Id_Us__45F365D3">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Consultas" EntitySet="Consultas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Consultas__Id_Ve__47DBAE45" Association="Self.FK__Consultas__Id_Ve__47DBAE45">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Consultas" EntitySet="Consultas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedidos__Id_Cons__4E88ABD4" Association="Self.FK__Pedidos__Id_Cons__4E88ABD4">
       <End Role="Consultas" EntitySet="Consultas" />
       <End Role="Pedidos" EntitySet="Pedidos" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pedidos__Product__3C69FB99" Association="Self.FK__Pedidos__Product__3C69FB99">
+    <AssociationSet Name="FK__Pedidos__Id_Prod__5070F446" Association="Self.FK__Pedidos__Id_Prod__5070F446">
       <End Role="Productos" EntitySet="Productos" />
       <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pedidos__Id_Usua__4F7CD00D" Association="Self.FK__Pedidos__Id_Usua__4F7CD00D">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Pedidos" EntitySet="Pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto___Id_Pr__3A81B327" Association="Self.FK__Producto___Id_Pr__3A81B327">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Producto_Imagenes" EntitySet="Producto_Imagenes" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

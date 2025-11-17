@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="LeyvaCarModelStoreContainer" CdmEntityContainer="LeyvaCarEntities">
+    <EntitySetMapping Name="Carrito">
+      <EntityTypeMapping TypeName="LeyvaCarModel.Carrito">
+        <MappingFragment StoreEntitySet="Carrito">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Usuario_Id" ColumnName="Usuario_Id" />
+          <ScalarProperty Name="Producto_Id" ColumnName="Producto_Id" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Fecha_Creacion" ColumnName="Fecha_Creacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CodigoVerificacion">
       <EntityTypeMapping TypeName="LeyvaCarModel.CodigoVerificacion">
         <MappingFragment StoreEntitySet="CodigoVerificacion">
@@ -17,19 +28,19 @@
     <EntitySetMapping Name="Consultas">
       <EntityTypeMapping TypeName="LeyvaCarModel.Consultas">
         <MappingFragment StoreEntitySet="Consultas">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
-          <ScalarProperty Name="TelefonoCliente" ColumnName="TelefonoCliente" />
+          <ScalarProperty Name="Id_Consulta" ColumnName="Id_Consulta" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
           <ScalarProperty Name="MarcaVehiculo" ColumnName="MarcaVehiculo" />
           <ScalarProperty Name="ModeloVehiculo" ColumnName="ModeloVehiculo" />
           <ScalarProperty Name="AnioVehiculo" ColumnName="AnioVehiculo" />
           <ScalarProperty Name="RutaImagen" ColumnName="RutaImagen" />
           <ScalarProperty Name="NombresDetectadosIA" ColumnName="NombresDetectadosIA" />
-          <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+          <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
           <ScalarProperty Name="TipoConsulta" ColumnName="TipoConsulta" />
           <ScalarProperty Name="MensajeWhatsApp" ColumnName="MensajeWhatsApp" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="RespuestaVendedor" ColumnName="RespuestaVendedor" />
+          <ScalarProperty Name="Id_Vendedor" ColumnName="Id_Vendedor" />
           <ScalarProperty Name="FechaConsulta" ColumnName="FechaConsulta" />
           <ScalarProperty Name="FechaRespuesta" ColumnName="FechaRespuesta" />
         </MappingFragment>
@@ -38,15 +49,27 @@
     <EntitySetMapping Name="Pedidos">
       <EntityTypeMapping TypeName="LeyvaCarModel.Pedidos">
         <MappingFragment StoreEntitySet="Pedidos">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
-          <ScalarProperty Name="NombreCliente" ColumnName="NombreCliente" />
-          <ScalarProperty Name="TelefonoCliente" ColumnName="TelefonoCliente" />
-          <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+          <ScalarProperty Name="Id_Pedido" ColumnName="Id_Pedido" />
+          <ScalarProperty Name="Id_Consulta" ColumnName="Id_Consulta" />
+          <ScalarProperty Name="Id_Usuario" ColumnName="Id_Usuario" />
+          <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
           <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
           <ScalarProperty Name="PrecioAcordado" ColumnName="PrecioAcordado" />
           <ScalarProperty Name="Estado" ColumnName="Estado" />
           <ScalarProperty Name="Notas" ColumnName="Notas" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto_Imagenes">
+      <EntityTypeMapping TypeName="LeyvaCarModel.Producto_Imagenes">
+        <MappingFragment StoreEntitySet="Producto_Imagenes">
+          <ScalarProperty Name="Id_Imagen" ColumnName="Id_Imagen" />
+          <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Alt_Text" ColumnName="Alt_Text" />
           <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -54,15 +77,15 @@
     <EntitySetMapping Name="Productos">
       <EntityTypeMapping TypeName="LeyvaCarModel.Productos">
         <MappingFragment StoreEntitySet="Productos">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
           <ScalarProperty Name="Codigo" ColumnName="Codigo" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="Categoria" ColumnName="Categoria" />
           <ScalarProperty Name="Precio" ColumnName="Precio" />
           <ScalarProperty Name="Stock" ColumnName="Stock" />
-          <ScalarProperty Name="UrlImagen" ColumnName="UrlImagen" />
           <ScalarProperty Name="Marca" ColumnName="Marca" />
+          <ScalarProperty Name="Modelo" ColumnName="Modelo" />
           <ScalarProperty Name="ModelosCompatibles" ColumnName="ModelosCompatibles" />
           <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
@@ -76,7 +99,9 @@
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Apellido" ColumnName="Apellido" />
           <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
           <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
           <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
           <ScalarProperty Name="Activo" ColumnName="Activo" />
         </MappingFragment>

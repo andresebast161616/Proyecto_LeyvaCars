@@ -180,7 +180,7 @@ namespace Proyecto_Leyva_Cars.Services
                 return _context.Productos
                     .Where(p => p.Activo == true && p.Stock > 0)
                     .OrderByDescending(p => p.FechaCreacion ?? DateTime.MinValue)
-                    .ThenByDescending(p => p.Id)
+                    .ThenByDescending(p => p.Id_Producto)
                     .Take(cantidad)
                     .ToList();
             }
@@ -366,7 +366,7 @@ namespace Proyecto_Leyva_Cars.Services
             try
             {
                 return _context.Productos
-                    .Where(p => p.Id == id && p.Activo == true)
+                    .Where(p => p.Id_Producto == id && p.Activo == true)
                     .FirstOrDefault();
             }
             catch (Exception)
@@ -380,7 +380,7 @@ namespace Proyecto_Leyva_Cars.Services
             try
             {
                 return _context.Productos
-                    .Where(p => p.Id != productoId && 
+                    .Where(p => p.Id_Producto != productoId && 
                               p.Categoria == categoria && 
                               p.Activo == true && 
                               p.Stock > 0)
